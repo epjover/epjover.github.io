@@ -244,7 +244,7 @@ button{font:inherit;color:inherit}
 .play--sm{padding:6px 14px 6px 7px;font-size:14px}
 .play--sm .play__ic{width:24px;height:24px}
 .play--sm .play__ic svg{width:9px;height:9px}
-.archivo__intro{max-width:76ch;color:var(--muted);font-size:16px;margin-bottom:4px}
+.archivo__intro{max-width:76ch;color:var(--muted);font-size:16px;margin-bottom:12px}
 .fx-list--ancho .fx{grid-template-columns:88px minmax(0,1fr)}
 .fx-list--ancho .fx__year{font-size:21px;line-height:1.25}
 .gente{padding:14px 0;border-bottom:1.5px solid var(--line)}
@@ -382,16 +382,24 @@ button{font:inherit;color:inherit}
     </div>
   </section>
 
+  <section class="section" id="archivo">
+    <div class="wrap">
+      <header class="section__head">
+        <h2>Archivo sonoro</h2>
+        <p>Diez de las grabaciones de flamenco más antiguas que se conservan, de los cilindros de cera de hacia 1900 a los discos de 1910. Todas se pueden escuchar aquí mismo.</p>
+      </header>
+      <p class="archivo__intro">Las primeras grabaciones de flamenco son cilindros de cera de finales del siglo XIX, y casi ninguno lleva fecha: no existe una lista exacta de «las diez más antiguas». Estas van, hasta donde se puede saber, de aquellos cilindros a los primeros discos de pizarra de 1908–1910. Los tres cilindros salen de la colección del Centro Andaluz de Documentación del Flamenco, que los publicó en 2003.</p>
+      <div class="fx-cols" id="archivo-lista"></div>
+    </div>
+  </section>
+
   <section class="section" id="documentacion">
     <div class="wrap">
       <header class="section__head">
         <h2>Para saber más</h2>
-        <p>Información y documentación sobre el flamenco: archivos, radio y televisión, webs para entender los palos, revistas y textos. Todos los enlaces se abren en una pestaña nueva. Al final, un archivo sonoro con diez de las grabaciones más antiguas.</p>
+        <p>Información y documentación sobre el flamenco: archivos, radio y televisión, webs para entender los palos, revistas y textos. Todos los enlaces se abren en una pestaña nueva.</p>
       </header>
       <div class="fx-cols" id="recursos"></div>
-      <h3 class="docs__sub" id="archivo">Archivo sonoro: diez de las grabaciones más antiguas</h3>
-      <p class="archivo__intro">Las primeras grabaciones de flamenco son cilindros de cera de finales del siglo XIX, y casi ninguno lleva fecha: no existe una lista exacta de «las diez más antiguas». Estas diez van, hasta donde se puede saber, de aquellos cilindros a los primeros discos de pizarra de 1908–1910, y todas se pueden escuchar aquí. Los tres cilindros salen de la colección del Centro Andaluz de Documentación del Flamenco, que los publicó en 2003.</p>
-      <div class="fx-cols" id="archivo-lista"></div>
     </div>
   </section>
 </main>
@@ -1383,8 +1391,8 @@ function pintarNav() {
     '<a href="#toque-y-baile"><b>' + (TOQUE.gente.length + BAILE.gente.length) + '</b> guitarristas y bailaores</a>' +
     '<a href="#herederos"><b>' + (PROMESAS.gente.length + GRUPOS.gente.length) + '</b> promesas y grupos de hoy</a>' +
     '<a href="#cine"><b>' + nCine + '</b> escenas de cine</a>' +
-    '<a href="#documentacion"><b>' + nRec + '</b> enlaces para saber más</a>' +
-    '<a href="#archivo"><b>' + ARCHIVO.length + '</b> grabaciones de hace más de un siglo</a>';
+    '<a href="#archivo"><b>' + ARCHIVO.length + '</b> grabaciones de hace más de un siglo</a>' +
+    '<a href="#documentacion"><b>' + nRec + '</b> enlaces para saber más</a>';
   $("#eras-nav").innerHTML = ERAS.map(function (e) {
     return '<a href="#' + e.id + '"' + (e.mar ? ' class="sea"' : "") + '><b>' + esc(e.nombre) + '</b> ' + esc(e.anos) + '</a>';
   }).join("");
