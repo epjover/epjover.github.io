@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Historia del flamenco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Cartel de festival sobre cal: albero en la cabecera, almagra para los acentos, añil para el viaje de ida y vuelta.
+   Layout: cabecera a sangre · rejilla de documentales · raíl vertical con la fecha a la izquierda · banda añil · listas de fusiones. */
+:root{
+  --page:#F3F2EC;      /* cal */
+  --ink:#19150F;       /* tinta */
+  --muted:#5F584D;
+  --line:#D3CFC3;
+  --accent:#8E2A1D;    /* almagra */
+  --hi:#E2A52B;        /* albero */
+  --sea:#1D3B6E;       /* añil */
+  --sea-ink:#F3F2EC;
+  --sea-muted:#BCC8DF;
+  --sea-line:#45608F;
+  --sea-mark:#1D3B6E;
+  --hero:#E2A52B;
+  --hero-ink:#19150F;
+  --surface:#FFFFFF;
+  --poster:#19150F;
+  --poster-ink:#F3F2EC;
+  --f-display:"Anton","Cartel estrecha","Cartel ajustada",sans-serif;
+  --f-name:"Bodoni Moda","Bodoni 72","Didot",Georgia,serif;
+  --f-body:"Libre Franklin","Franklin Gothic Medium","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --page:#14110D; --ink:#F1EEE6; --muted:#A9A193; --line:#3A342B; --accent:#E0694F; --hi:#E8B03A;
+    --sea:#142A52; --sea-ink:#EEF1F7; --sea-muted:#A9B8D6; --sea-line:#34508A; --sea-mark:#8FB0EA;
+    --surface:#1E1A14; --poster:#2A241B; --poster-ink:#F1EEE6;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#14110D; --ink:#F1EEE6; --muted:#A9A193; --line:#3A342B; --accent:#E0694F; --hi:#E8B03A;
+  --sea:#142A52; --sea-ink:#EEF1F7; --sea-muted:#A9B8D6; --sea-line:#34508A; --sea-mark:#8FB0EA;
+  --surface:#1E1A14; --poster:#2A241B; --poster-ink:#F1EEE6;
+  color-scheme:dark;
+}
+
+@font-face{font-family:"Cartel estrecha";src:local("Impact"),local("Haettenschweiler"),local("Arial Narrow Bold"),local("Arial Narrow")}
+@font-face{font-family:"Cartel ajustada";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Liberation Sans Bold"),local("Arial"),local("Liberation Sans"),local("DejaVu Sans Bold");size-adjust:70%}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.no-scroll{overflow:hidden}
+body{margin:0;background:var(--page);color:var(--ink);font:400 17px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+p,h1,h2,h3,h4,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--hi);outline-offset:3px}
+.wrap{width:100%;max-width:1152px;margin:0 auto;padding:0 20px}
+.label{font:600 12px/1.2 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* ───── Cabecera ───── */
+.hero{background:var(--hero);color:var(--hero-ink);padding:28px 0 36px}
+.hero :focus-visible{outline-color:var(--hero-ink)}
+.hero__kicker{font:600 13px/1.2 var(--f-body);letter-spacing:.12em;text-transform:uppercase}
+.hero__title{font-family:var(--f-display);font-weight:400;text-transform:uppercase;margin-top:18px}
+.hero__title-sm{display:block;font-size:clamp(26px,5vw,64px);line-height:1;letter-spacing:.01em}
+.hero__title-lg{display:block;font-size:clamp(56px,17vw,250px);line-height:.88;letter-spacing:-.005em;overflow-x:clip}
+.hero__title-lg span{display:inline-block;white-space:nowrap}
+.hero__compas{display:flex;align-items:baseline;justify-content:space-between;margin-top:clamp(14px,2.4vw,30px);border-top:4px solid var(--hero-ink);border-bottom:4px solid var(--hero-ink);padding:clamp(6px,1vw,12px) 0}
+.hero__compas li{flex:1;text-align:center;font-family:var(--f-display);font-size:clamp(17px,4.6vw,58px);line-height:1.1;opacity:.5;font-variant-numeric:tabular-nums}
+.hero__compas li.on{opacity:1;color:#8E2A1D;font-size:clamp(24px,6.6vw,84px)}
+@media (prefers-reduced-motion:no-preference){
+  .hero__compas li{animation:golpe 6s linear infinite;animation-delay:calc(var(--i) * .5s)}
+  @keyframes golpe{0%{transform:translateY(0)}2%{transform:translateY(-12%) scale(1.14)}9%,100%{transform:translateY(0) scale(1)}}
+}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px 48px;margin-top:22px;align-items:start}
+.hero__dek{font:500 clamp(19px,2.2vw,26px)/1.3 var(--f-body);max-width:26ch;text-wrap:balance}
+.hero__note{font-size:15px;line-height:1.45;max-width:46ch}
+.hero__nav{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:26px}
+.hero__nav a{display:inline-flex;align-items:baseline;gap:8px;padding:8px 14px;border:2px solid var(--hero-ink);border-radius:999px;text-decoration:none;font:600 15px/1.2 var(--f-body)}
+.hero__nav a b{font:400 18px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.hero__nav a:hover{background:var(--hero-ink);color:var(--hero)}
+@media (max-width:720px){.hero__grid{grid-template-columns:1fr}}
+
+/* ───── Secciones ───── */
+.section{padding:64px 0 24px}
+.section__head{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:8px 40px;align-items:end;border-bottom:4px solid var(--ink);padding-bottom:16px;margin-bottom:28px}
+.section__head h2{font:400 clamp(40px,10.5vw,104px)/.9 var(--f-display);text-transform:uppercase;letter-spacing:.005em}
+.section__head p{max-width:52ch;color:var(--muted);font-size:16px;justify-self:end}
+.embed-note{margin:-12px 0 24px;padding:10px 14px;border-left:4px solid var(--hi);background:color-mix(in srgb,var(--hi) 14%,transparent);font-size:15px;max-width:78ch}
+@media (max-width:820px){.section__head{grid-template-columns:1fr}.section__head p{justify-self:start}}
+
+/* ───── Documentales ───── */
+.docs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:36px 24px;align-items:start}
+.doc{grid-column:span 2}
+.doc--lead{grid-column:span 3}
+.doc__btn,.doc__more{display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer;text-decoration:none;border-radius:2px}
+.poster{position:relative;display:block;aspect-ratio:16/9;background-color:var(--poster);background-image:radial-gradient(circle,rgba(226,165,43,.2) 0 17%,transparent 18%);background-size:30px 30px;overflow:hidden;color:var(--poster-ink)}
+.poster__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.poster__img.is-in{opacity:1}
+.poster__tag{position:absolute;left:0;bottom:0;padding:5px 10px 4px;background:var(--hi);color:#19150F;font:400 15px/1.1 var(--f-display);letter-spacing:.03em;text-transform:uppercase}
+.poster__play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--hi);color:#19150F;display:grid;place-items:center;transition:transform .2s}
+.poster__play svg{width:24px;height:24px;margin-left:4px}
+.doc__btn:hover .poster__play{transform:scale(1.1)}
+.doc__title{display:block;margin-top:14px;font:italic 700 24px/1.12 var(--f-name);text-wrap:balance}
+.doc--lead .doc__title{font-size:clamp(26px,3vw,34px)}
+.doc__btn:hover .doc__title{color:var(--accent)}
+.doc__meta{display:block;margin-top:6px;font:600 12px/1.3 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.doc__text{display:block;margin-top:8px;font-size:15px;line-height:1.5;color:var(--muted);max-width:56ch}
+.doc__more{display:flex;flex-direction:column;justify-content:space-between;gap:20px;aspect-ratio:16/9;padding:18px;border:2px solid var(--ink)}
+.doc__more b{font:italic 700 22px/1.15 var(--f-name)}
+.doc__more span{font:600 14px/1.3 var(--f-body)}
+.doc__more:hover{background:var(--ink);color:var(--page)}
+@media (max-width:980px){.docs{grid-template-columns:repeat(2,minmax(0,1fr))}.doc,.doc--lead{grid-column:span 1}}
+@media (max-width:600px){.docs{grid-template-columns:1fr}}
+
+/* ───── Cronología ───── */
+.eras-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.eras-nav a{padding:7px 12px;border:1.5px solid var(--line);border-radius:999px;text-decoration:none;font:500 14px/1.2 var(--f-body);color:var(--muted)}
+.eras-nav a b{color:var(--ink);font-weight:600}
+.eras-nav a:hover{border-color:var(--ink)}
+.eras-nav a.sea{border-color:var(--sea-mark)}
+.eras-nav a.sea b{color:var(--sea-mark)}
+
+.era{padding:56px 0 16px;background:var(--page);color:var(--ink)}
+.era__head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px 48px;margin-bottom:40px}
+.era__years{font:400 clamp(30px,4.6vw,56px)/1 var(--f-display);color:var(--accent);font-variant-numeric:tabular-nums}
+.era__name{font:400 clamp(44px,7.2vw,96px)/.9 var(--f-display);text-transform:uppercase;margin-top:6px}
+.era__lema{font:italic 600 clamp(20px,2.2vw,26px)/1.2 var(--f-name);margin-top:12px}
+.era__text{max-width:62ch}
+.hitos{margin-top:18px;border-top:1.5px solid var(--line)}
+.hitos li{display:grid;grid-template-columns:104px minmax(0,1fr);gap:14px;padding:9px 0;border-bottom:1.5px solid var(--line);font-size:15px;line-height:1.45}
+.hitos b{font:400 18px/1.25 var(--f-display);color:var(--accent);font-variant-numeric:tabular-nums}
+.linkplay{display:inline-flex;align-items:center;gap:6px;margin-left:4px;padding:0;border:0;background:none;cursor:pointer;font:600 14px/1.3 var(--f-body);color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.linkplay svg{width:10px;height:10px}
+@media (max-width:820px){.era__head{grid-template-columns:1fr}}
+
+.tl{position:relative}
+.tl::before{content:"";position:absolute;top:6px;bottom:0;left:169px;width:3px;background:var(--ink)}
+.tl-item{display:grid;grid-template-columns:150px 41px minmax(0,1fr);grid-template-areas:"date node card";padding-bottom:52px}
+.tl-date{grid-area:date;font:400 21px/1.15 var(--f-display);color:var(--accent);text-align:right;padding-right:6px;font-variant-numeric:tabular-nums;text-wrap:balance}
+.tl-node{grid-area:node;position:relative;justify-self:center;width:19px;height:19px;margin-top:2px;border-radius:50%;background:var(--accent);border:3px solid var(--ink);transition:background-color .4s,transform .4s}
+.palo{grid-area:card;max-width:680px;padding-left:8px;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.tl-item.pending .palo{opacity:.38;transform:translateY(18px)}
+.tl-item.pending .tl-node{background:var(--page);transform:scale(.8)}
+@media (max-width:720px){
+  .tl::before{left:8px}
+  .tl-item{grid-template-columns:19px minmax(0,1fr);grid-template-areas:"node date" ". card";column-gap:14px}
+  .tl-date{text-align:left;padding:0 0 6px}
+  .palo{padding-left:0}
+}
+.palo__name{font:italic 800 clamp(34px,5vw,50px)/1 var(--f-name);letter-spacing:-.01em}
+.palo__place{margin-top:8px;font:600 12px/1.35 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.compas{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin-top:14px}
+.compas__dots{display:flex;align-items:center;gap:5px;height:14px}
+.compas__dots i{display:block;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink);opacity:.45}
+.compas__dots i.on{width:13px;height:13px;background:var(--accent);border-color:var(--accent);opacity:1}
+.compas__dots i.gap{width:6px;border:0}
+.compas__dots svg{display:block;width:96px;height:12px;color:var(--accent)}
+.compas__label{font-size:13.5px;line-height:1.35;color:var(--muted)}
+.palo__text{margin-top:14px;max-width:62ch}
+.palo__aside{margin-top:14px;padding:10px 14px;border-left:4px solid var(--sea-mark);background:color-mix(in srgb,var(--sea-mark) 9%,transparent);font-size:15px;line-height:1.5;max-width:62ch}
+.palo__aside b{display:block;font:600 12px/1.3 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--sea-mark);margin-bottom:3px}
+.figura{margin-top:18px;padding-top:12px;border-top:1.5px solid var(--line);max-width:62ch}
+.figura__name{margin-top:5px;font:700 19px/1.25 var(--f-body)}
+.figura__name span{font-weight:400;color:var(--muted);font-size:15px}
+.figura__note{margin-top:3px;font-size:15px;line-height:1.5;color:var(--muted)}
+.listen{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:14px}
+.play{display:inline-flex;align-items:center;gap:11px;max-width:100%;padding:9px 18px 9px 10px;border:0;border-radius:999px;background:var(--ink);color:var(--page);cursor:pointer;text-align:left;font:500 15px/1.25 var(--f-body);transition:background-color .15s}
+.play:hover{background:var(--accent)}
+.play__ic{flex:none;width:30px;height:30px;border-radius:50%;background:var(--hi);color:#19150F;display:grid;place-items:center}
+.play__ic svg{width:11px;height:11px;margin-left:2px}
+.play b{font-weight:700}
+.out{font:600 14px/1.3 var(--f-body);text-underline-offset:3px;white-space:nowrap}
+.out:hover{color:var(--accent)}
+
+/* Banda de ida y vuelta: mismos componentes, tinta sobre añil */
+.era--sea{--page:var(--sea);--ink:var(--sea-ink);--muted:var(--sea-muted);--line:var(--sea-line);--accent:var(--hi);margin:40px 0 0;padding:64px 0 24px}
+.era--sea .era__name{color:var(--hi)}
+.viaje{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:center;margin:22px 0 4px;padding:16px 0;border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line)}
+.viaje__end{font:400 clamp(20px,2.6vw,30px)/1.05 var(--f-display);text-transform:uppercase}
+.viaje__end small{display:block;margin-top:6px;font:500 12.5px/1.35 var(--f-body);letter-spacing:.03em;text-transform:none;color:var(--muted)}
+.viaje__end:last-child{text-align:right}
+.viaje__arrows{display:grid;gap:14px}
+.flecha{position:relative;height:2px;background:var(--hi)}
+.flecha::after{content:"";position:absolute;top:-5px;width:0;height:0;border:6px solid transparent}
+.flecha--ida::after{left:-2px;border-right-color:var(--hi);border-left-width:0}
+.flecha--vuelta::after{right:-2px;border-left-color:var(--hi);border-right-width:0}
+.flecha span{position:absolute;left:50%;top:-9px;transform:translateX(-50%);padding:0 8px;background:var(--page);font:600 11.5px/1.5 var(--f-body);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.dosvias{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 32px;margin-top:16px;font-size:15px;line-height:1.5}
+.dosvias b{display:block;font:400 17px/1.3 var(--f-display);letter-spacing:.03em;text-transform:uppercase;color:var(--hi)}
+@media (max-width:560px){
+  .dosvias{grid-template-columns:1fr}
+  .viaje{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}
+  .viaje__arrows{grid-column:1 / -1;grid-row:2}
+}
+
+/* ───── Fusiones ───── */
+.fx-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 56px}
+.fx-group{margin-bottom:40px}
+.fx-group h3{font:italic 800 clamp(30px,3.6vw,42px)/1 var(--f-name)}
+.fx-group>p{margin-top:8px;color:var(--muted);font-size:15.5px;max-width:52ch}
+.fx-list{margin-top:16px;border-top:3px solid var(--ink)}
+.fx{display:grid;grid-template-columns:62px minmax(0,1fr);gap:4px 14px;padding:14px 0;border-bottom:1.5px solid var(--line)}
+.fx__year{font:400 24px/1.1 var(--f-display);color:var(--accent);font-variant-numeric:tabular-nums}
+.fx__title{font:700 17px/1.3 var(--f-body)}
+.fx__title span{font-weight:400}
+.fx__note{margin-top:4px;font-size:15px;line-height:1.5;color:var(--muted)}
+.fx .listen{grid-column:2;margin-top:10px}
+.play--sm{padding:6px 14px 6px 7px;font-size:14px}
+.play--sm .play__ic{width:24px;height:24px}
+.play--sm .play__ic svg{width:9px;height:9px}
+@media (max-width:900px){.fx-cols{grid-template-columns:1fr}}
+
+/* ───── Pie ───── */
+.foot{margin-top:40px;padding:28px 0 56px;border-top:4px solid var(--ink)}
+.foot p{max-width:78ch;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.foot p+p{margin-top:10px}
+
+/* ───── Ventana flotante ───── */
+.fw{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px}
+.fw[hidden]{display:none}
+.fw__backdrop{position:absolute;inset:0;background:rgba(15,12,8,.72)}
+.fw__panel{position:relative;width:min(980px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--surface);color:var(--ink);box-shadow:0 24px 80px rgba(0,0,0,.5);border-radius:4px;overflow:hidden}
+.fw__bar{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 16px;background:#19150F;color:#F3F2EC}
+.fw__title{flex:1;min-width:0;font:italic 700 19px/1.2 var(--f-name);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fw__btn{flex:none;height:34px;padding:0 12px;border:1.5px solid rgba(243,242,236,.4);border-radius:999px;background:none;color:inherit;cursor:pointer;font:600 13px/1 var(--f-body)}
+.fw__btn:hover{background:#F3F2EC;color:#19150F}
+.fw__btn--x{width:34px;padding:0;font-size:16px}
+.fw__stage{position:relative;aspect-ratio:16/9;background:#000;flex:none}
+.fw__stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.fw__fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;text-align:center;background-color:#19150F;background-image:radial-gradient(circle,rgba(226,165,43,.16) 0 17%,transparent 18%);background-size:34px 34px;color:#F3F2EC}
+.fw__go{display:inline-flex;align-items:center;gap:12px;padding:12px 24px 12px 12px;border-radius:999px;background:#E2A52B;color:#19150F;text-decoration:none;font:700 18px/1.2 var(--f-body)}
+.fw__go:hover{background:#F3F2EC}
+.fw__go i{width:38px;height:38px;border-radius:50%;background:#19150F;color:#E2A52B;display:grid;place-items:center}
+.fw__go svg{width:14px;height:14px;margin-left:3px}
+.fw__fallback p{max-width:54ch;font-size:14.5px;line-height:1.5;color:#D8D3C6}
+.fw__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 20px;padding:12px 16px;font-size:14.5px}
+.fw__foot p{color:var(--muted);min-width:0}
+.fw.is-docked{inset:auto 16px 16px auto;display:block;padding:0;width:min(420px,calc(100vw - 32px))}
+.fw.is-docked .fw__backdrop,.fw.is-docked .fw__foot{display:none}
+.fw.is-docked .fw__title{font-size:16px}
+@media (max-width:560px){.fw__btn--dock{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="hero__kicker">Cronología para escuchar</p>
+    <h1 class="hero__title"><span class="hero__title-sm">Historia del</span><span class="hero__title-lg" id="hero-lg"><span>Flamenco</span></span></h1>
+    <ol class="hero__compas" aria-label="Compás de soleá: doce tiempos con acentos en 3, 6, 8, 10 y 12">
+      <li style="--i:0">1</li><li style="--i:1">2</li><li class="on" style="--i:2">3</li><li style="--i:3">4</li><li style="--i:4">5</li><li class="on" style="--i:5">6</li><li style="--i:6">7</li><li class="on" style="--i:7">8</li><li style="--i:8">9</li><li class="on" style="--i:9">10</li><li style="--i:10">11</li><li class="on" style="--i:11">12</li>
+    </ol>
+    <div class="hero__grid">
+      <p class="hero__dek">Los palos, por orden de aparición: de dónde vienen, quién los hizo grandes y un cante para escuchar cada uno.</p>
+      <p class="hero__note">Arriba, el compás de la soleá: doce tiempos y cinco acentos. De él salen la bulería, la alegría, la caña y el polo. En cada palo de la cronología verás su compás dibujado de la misma manera.</p>
+    </div>
+    <nav class="hero__nav" id="hero-nav" aria-label="Secciones"></nav>
+  </div>
+</header>
+
+<main>
+  <section class="section" id="documentales">
+    <div class="wrap">
+      <header class="section__head">
+        <h2>Documentales</h2>
+        <p>Para entrar en materia antes de la cronología. Todos están libres en YouTube; al pulsar uno se abre en una ventana flotante.</p>
+      </header>
+      <p class="embed-note" id="embed-note" hidden></p>
+      <ul class="docs" id="docs"></ul>
+    </div>
+  </section>
+
+  <section class="section" id="cronologia">
+    <div class="wrap">
+      <header class="section__head">
+        <h2>Cronología</h2>
+        <p>Cada palo aparece en la fecha aproximada en que toma forma flamenca, con su compás, su figura de referencia y una grabación.</p>
+      </header>
+      <nav class="eras-nav" id="eras-nav" aria-label="Épocas"></nav>
+    </div>
+    <div id="eras"></div>
+  </section>
+
+  <section class="section" id="fusiones">
+    <div class="wrap">
+      <header class="section__head">
+        <h2>Fusiones</h2>
+        <p>Desde 1960 el flamenco se mezcla con casi todo. Discos y canciones que marcaron cada cruce, por orden de fecha.</p>
+      </header>
+      <div class="fx-cols" id="fx"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Las fechas indican cuándo cada palo toma una forma flamenca reconocible y son aproximadas: la cronología del flamenco se discute y casi todos los palos tienen raíces más antiguas. La figura de referencia es una elección razonada entre varias posibles.</p>
+    <p>Los vídeos pertenecen a sus canales de YouTube y estaban disponibles el 15 de noviembre de 2026. Si alguno desaparece, el enlace «Más versiones» busca otras grabaciones del mismo palo.</p>
+  </div>
+</footer>
+
+<div class="fw" id="fw" hidden>
+  <div class="fw__backdrop" id="fw-backdrop"></div>
+  <section class="fw__panel" id="fw-panel" role="dialog" aria-modal="true" aria-labelledby="fw-title">
+    <header class="fw__bar">
+      <h2 class="fw__title" id="fw-title"></h2>
+      <button type="button" class="fw__btn fw__btn--dock" id="fw-dock" title="Sigue leyendo con el vídeo en una esquina">A la esquina</button>
+      <button type="button" class="fw__btn fw__btn--x" id="fw-close" aria-label="Cerrar la ventana">✕</button>
+    </header>
+    <div class="fw__stage" id="fw-stage"></div>
+    <footer class="fw__foot">
+      <p id="fw-sub"></p>
+      <a class="out" id="fw-link" href="#" target="_blank" rel="noopener">Abrir en YouTube ↗</a>
+    </footer>
+  </section>
+</div>
+
+<noscript><p style="padding:24px">Esta página necesita JavaScript para mostrar la cronología.</p></noscript>
+
+<script>
+(function () {
+"use strict";
+
+/* ═══════════════════════════════════════════════════════════════════
+   DATOS. Para añadir un documental, copia una línea de DOCUMENTALES
+   y cambia el id: es lo que va detrás de «v=» en la dirección de YouTube.
+   ═══════════════════════════════════════════════════════════════════ */
+
+var DOCUMENTALES = [
+  { id: "6IkjLMuqKb8", sello: "1999", titulo: "Agujetas de Jerez. Alegato jondo a favor de la pureza",
+    meta: "Retrato · Manuel Agujetas",
+    texto: "Manuel Agujetas (1939–2015), criado en la fragua de su padre y uno de los últimos representantes de la escuela jerezana de Manuel Torre, cuenta y canta su manera de entender el cante." },
+  { id: "TmgQS_LSRVo", sello: "Cante", titulo: "Antonio Mairena. Soleares de Alcalá",
+    meta: "Actuación · Antonio Mairena (1909–1983)",
+    texto: "El hombre que ordenó y defendió el cante gitano-andaluz canta las soleares de Alcalá de Guadaíra, la escuela de Joaquín el de la Paula." },
+  { id: "QFvCh108POQ", sello: "RTVE", titulo: "La luz del flamenco",
+    meta: "Documental · RTVE, 1997",
+    texto: "Un repaso a la historia del flamenco conducido por Paco Rabal." },
+  { id: "qDl8DOU3U_E", sello: "TVE · 1971", titulo: "Rito y geografía del cante: romances, tientos y tangos",
+    meta: "Serie · TVE, 30 de octubre de 1971",
+    texto: "Uno de los primeros programas de la serie que filmó el cante en sus casas y sus pueblos, con Perrate de Utrera y La Perrata entre otros. Subtítulos en inglés." },
+  { id: "MHZsOfdi2MI", sello: "TVE · 1973", titulo: "Rito y geografía del cante: Paco de Lucía",
+    meta: "Serie · TVE, 21 de mayo de 1973",
+    texto: "Paco de Lucía, con 25 años y el mismo año de «Entre dos aguas», toca y habla de su guitarra. Subtítulos en inglés." },
+  { id: "P3FaN_9Rb2Y", sello: "UNED · 2023", titulo: "El flamenco al compás de la historia",
+    meta: "Divulgación · UNED en La 2, 2023",
+    texto: "Programa de la UNED sobre el valor patrimonial del flamenco y su recorrido histórico." },
+  { id: "74iibTJ1_Oo", sello: "TVE · 2015", titulo: "Flamenco Revolution",
+    meta: "Documental · «Ochéntame otra vez», TVE, 2015",
+    texto: "Cómo el flamenco se cruzó con el rock, el jazz y el pop en los años setenta y ochenta. Buen prólogo para la sección de fusiones." }
+];
+var SERIE_COMPLETA = { titulo: "Rito y geografía del cante, la serie completa",
+  texto: "Casi cien capítulos (1971–1973) en una lista de reproducción ↗",
+  url: "https://www.youtube.com/playlist?list=PL4gdzP_7_dStTcxf3Vu8aRH1vIUJKHkN7" };
+
+/* Compás: tipo ("12" doce tiempos, "bin" binario, "ter" ternario, "libre"), acentos y rótulo. */
+var SOLEA = [3, 6, 8, 10, 12], SEGUI = [1, 3, 5, 8, 11], GUAJI = [1, 4, 7, 9, 11];
+
+var ERAS = [
+  { id: "raices", anos: "Antes de 1780", nombre: "Raíces", lema: "Antes de que se llamara flamenco",
+    texto: "El flamenco no tiene partida de nacimiento. Se cuece durante siglos en la Baja Andalucía (Sevilla, Jerez, Cádiz y Los Puertos) con ingredientes muy distintos: el romancero castellano, la música andalusí y morisca, los cantos y bailes de la población negra de Sevilla y Cádiz, el folclore andaluz de fandangos y seguidillas, y la manera de cantar de los gitanos.",
+    hitos: [
+      ["1425", "Alfonso V de Aragón firma un salvoconducto a «Juan de Egipto Menor»: primera noticia de gitanos en la península."],
+      ["1462", "Llegan a Andalucía; los recibe en Jaén el condestable Miguel Lucas de Iranzo."],
+      ["1749", "La Gran Redada: el marqués de la Ensenada ordena apresar a todos los gitanos del reino."],
+      ["1774", "Cadalso describe en las «Cartas marruecas» una juerga gitana presidida por el Tío Gregorio. Se publican en 1789."],
+      ["1783", "Pragmática de Carlos III: libertad de oficio y residencia a cambio de abandonar lengua, traje y vida errante."]
+    ],
+    palos: [
+      { nombre: "Romance", fecha: "s. XV–XVIII", lugar: "Los Puertos, Jerez, Triana",
+        compas: ["12", SOLEA, "Aire de soleá por bulerías, o a palo seco"],
+        texto: "Los viejos romances castellanos, conservados de memoria en familias gitanas de Los Puertos y Jerez, que los llaman corridos. Es el eslabón entre el romancero medieval y las tonás: una historia cantada de corrido, sin estribillo.",
+        figura: "El Negro del Puerto", datos: "José de los Reyes, El Puerto de Santa María",
+        nota: "Guardó de memoria romances que ya casi nadie cantaba y los grabó para la «Magna antología del cante flamenco».",
+        ej: { id: "CSpjV8vevKI", t: "Romance de Gerineldo", d: "" }, q: "romance corrido gitano cante flamenco" }
+    ] },
+
+  { id: "primitiva", anos: "c. 1780–1850", nombre: "Etapa primitiva", lema: "Cantes sin guitarra",
+    texto: "Los primeros cantes que ya suenan a flamenco se hacen a palo seco, sin guitarra, en fraguas, casas y tabernas de Triana, Jerez y Cádiz. No hay escenarios ni público de pago: se canta en familia. Los primeros nombres son medio leyenda, como Tío Luis el de la Juliana, y enseguida históricos: El Planeta y su discípulo El Fillo.",
+    hitos: [
+      ["c. 1780", "Tío Luis el de la Juliana, aguador de Jerez según la tradición: el primer cantaor del que queda nombre."],
+      ["1847", "Estébanez Calderón publica «Un baile en Triana» en sus «Escenas andaluzas»: cantan El Planeta y El Fillo, y el repertorio primitivo queda por escrito."]
+    ],
+    palos: [
+      { nombre: "Toná y debla", fecha: "c. 1770–1800", lugar: "Triana, Jerez, Cádiz",
+        compas: ["libre", null, "Libre, a palo seco (sin guitarra)"],
+        texto: "El tronco del cante jondo: coplas de cuatro versos cantadas sin acompañamiento, nacidas del romance. De las tonás salen el martinete, la carcelera y la debla, la más adornada y difícil, que estuvo a punto de perderse.",
+        figura: "Tomás Pavón", datos: "Sevilla, 1893–1952",
+        nota: "Hermano de La Niña de los Peines. Grabó poco, pero su debla es la vara de medir.",
+        ej: { id: "qGtLJuhPWr4", t: "En el barrio de Triana", d: "martinete y debla, años cuarenta" }, q: "debla toná cante flamenco" },
+      { nombre: "Martinete", fecha: "c. 1800", lugar: "Fraguas de Triana, Jerez y Cádiz",
+        compas: ["libre", null, "Libre, a palo seco; para el baile toma el compás de la seguiriya"],
+        texto: "La toná de los herreros gitanos. Se canta sin guitarra, a veces con el golpe del martillo sobre el yunque, y sus letras hablan de fragua, cárcel y persecución.",
+        figura: "Manuel Agujetas", datos: "Jerez, 1939–2015",
+        nota: "Hijo de Agujetas el Viejo y herrero antes que cantaor. Es el protagonista del primer documental de esta página.",
+        ej: { id: "116ggvFYZu4", t: "Martinetes", d: "del disco «24 quilates», 2002" }, q: "martinete cante flamenco" },
+      { nombre: "Seguiriya", fecha: "c. 1800–1840", lugar: "Jerez, Los Puertos, Cádiz, Triana",
+        compas: ["12", SEGUI, "12 tiempos · acentos en 1, 3, 5, 8 y 11"],
+        texto: "El cante más trágico. Viene de las playeras, cantos de duelo; El Planeta y El Fillo ya las cantaban a mediados del XIX y Silverio las llevó a los cafés. Su compás reparte los doce tiempos en cinco golpes desiguales, dos cortos, dos largos y uno corto.",
+        figura: "Manuel Torre", datos: "Jerez, 1878–1933",
+        nota: "Para muchos, el mejor seguiriyero de la historia. Lorca le dedicó las «Viñetas flamencas».",
+        ej: { id: "Su4qXRGhnPY", t: "A clavito y canela", d: "seguiriya, disco de pizarra" }, q: "seguiriya cante flamenco" },
+      { nombre: "Caña y polo", fecha: "c. 1820–1850", lugar: "Ronda, Cádiz, Sevilla",
+        compas: ["12", SOLEA, "12 tiempos · acentos en 3, 6, 8, 10 y 12"],
+        texto: "Estébanez Calderón llamó a la caña «tronco primitivo» de los cantes andaluces. Caña y polo comparten el compás de la soleá y un largo lamento vocalizado entre copla y copla. Casi perdidos hacia 1900, volvieron con la antología de 1954.",
+        figura: "Rafael Romero «El Gallina»", datos: "Andújar, 1910 – Madrid, 1991",
+        nota: "La voz de aquella antología: su caña devolvió el palo al repertorio.",
+        ej: { id: "_MosZnh4_mU", t: "La caña", d: "«Antología del cante flamenco», con Perico el del Lunar" }, q: "caña polo cante flamenco" },
+      { nombre: "Soleá", fecha: "c. 1840–1860", lugar: "Triana, Alcalá, Utrera, Lebrija, Jerez, Cádiz",
+        compas: ["12", SOLEA, "12 tiempos · acentos en 3, 6, 8, 10 y 12"],
+        texto: "La madre del cante: de su compás derivan bulerías, alegrías, caña y polo. Nace en Triana como cante para bailar y cada comarca fija sus estilos: Alcalá con Joaquín el de la Paula, Utrera con La Serneta, Jerez con Frijones, Cádiz con El Mellizo.",
+        figura: "Fernanda de Utrera", datos: "Utrera, 1923–2006",
+        nota: "Una voz corta y rota que hizo de la soleá un asunto personal, siempre junto a su hermana Bernarda.",
+        ej: { id: "h6Ran4rlBCM", t: "Soleá", d: "Canal Sur, 1996" },
+        otro: { id: "TmgQS_LSRVo", t: "Antonio Mairena, soleares de Alcalá" }, q: "soleá cante flamenco" }
+    ] },
+
+  { id: "cafes", anos: "c. 1850–1920", nombre: "Cafés cantantes", lema: "La edad de oro",
+    texto: "El cante sale a escena. En los cafés cantantes de Sevilla, Jerez, Cádiz, Málaga y Madrid se cobra entrada, hay cuadro de baile y la guitarra se hace imprescindible. Allí se mezclan los cantes gitanos con los fandangos y cantes regionales andaluces, y nace el repertorio que hoy llamamos flamenco. Silverio Franconetti, sevillano de padre italiano, es el gran cantaor y el gran empresario de la época.",
+    hitos: [
+      ["1864", "Silverio vuelve tras varios años en Montevideo y Buenos Aires y recorre Andalucía cantando."],
+      ["1881", "Abre el Café de Silverio en la calle Rosario de Sevilla. El mismo año, Demófilo publica la «Colección de cantes flamencos»."],
+      ["c. 1895–1900", "Primeras grabaciones en cilindro de cera; entre ellas, una malagueña de Chacón."]
+    ],
+    palos: [
+      { nombre: "Alegrías y cantiñas", fecha: "c. 1850–1870", lugar: "Cádiz y Los Puertos",
+        compas: ["12", SOLEA, "12 tiempos, como la soleá, en modo mayor"],
+        texto: "La soleá puesta en modo mayor y a ritmo de fiesta. La tradición las hace nacer de las jotas que cantaban los aragoneses en el Cádiz sitiado de 1810–1812. De la misma familia son romeras, mirabrás y caracoles.",
+        figura: "La Perla de Cádiz", datos: "Antonia Gilabert, Cádiz, 1925–1975",
+        nota: "La voz de los cantes de su ciudad y referencia declarada de Camarón.",
+        ej: { id: "XpfVrI8zZ2s", t: "Alegrías", d: "con la guitarra de Eloy Blanco" }, q: "alegrías de Cádiz cante flamenco" },
+      { nombre: "Malagueña", fecha: "c. 1860–1890", lugar: "Málaga y Cádiz",
+        compas: ["libre", null, "Libre, sin compás"],
+        texto: "Un fandango de Málaga que pierde el compás de baile y se vuelve cante libre, lento y lleno de melismas. Juan Breva la hizo famosa; Enrique el Mellizo, en Cádiz, y después Chacón le dieron la forma solemne de hoy.",
+        figura: "Antonio Chacón", datos: "Jerez, 1869–1929",
+        nota: "Le llamaban don Antonio. Llevó los cantes libres a su cumbre.",
+        ej: { id: "UhXTNvqYBjo", t: "Que tienes por mi persona", d: "malagueñas, con Ramón Montoya" }, q: "malagueña cante flamenco" },
+      { nombre: "Fandangos de Huelva", fecha: "c. 1870–1900", lugar: "Alosno, Huelva y su sierra",
+        compas: ["ter", null, "Ternario (3/4)"],
+        texto: "El fandango se baila en toda España desde el XVIII. En Huelva cada pueblo conserva el suyo, de Alosno a Encinasola, y de ahí pasa al flamenco como cante corto, a compás y con aire de coro.",
+        figura: "Paco Toronjo", datos: "Alosno, 1928–1998",
+        nota: "De Alosno, la cuna del fandango. Lo cantó toda la vida, primero a dúo con su hermano Pepe.",
+        ej: { id: "oXcErBQItjw", t: "Fandangos de Huelva", d: "Canal Sur, 1996" }, q: "fandangos de Huelva cante" },
+      { nombre: "Tangos y tientos", fecha: "c. 1860–1900", lugar: "Cádiz, Triana, Jerez; después Granada, Málaga y Extremadura",
+        compas: ["bin", null, "Binario (4/4): ligero en los tangos, lento en los tientos"],
+        texto: "El gran palo binario y de fiesta. Los tientos son su versión lenta y solemne, fijada hacia 1900 por Enrique el Mellizo, Manuel Torre y Chacón.",
+        aviso: ["¿Otro viaje de vuelta?", "Varios investigadores ven en el tango flamenco el tango americano que llegó de La Habana a Cádiz en el XIX. Otros, como Ricardo Molina y Antonio Mairena, lo tienen por cante gitano básico. La discusión sigue abierta."],
+        figura: "La Niña de los Peines", datos: "Pastora Pavón, Sevilla, 1890–1969",
+        nota: "Debe el nombre artístico a unos tangos sobre sus peines que cantaba de niña. La cantaora más completa que se recuerda.",
+        ej: { id: "isWBl2m2eKQ", t: "A mi mare abandoné", d: "tangos y tientos, con Melchor de Marchena" }, q: "tangos tientos cante flamenco" },
+      { nombre: "Bulerías", fecha: "c. 1880–1900", lugar: "Jerez de la Frontera",
+        compas: ["12", SOLEA, "12 tiempos, como la soleá, muy rápido; se cuenta desde el 12"],
+        texto: "Nace como remate rápido de la soleá y acaba siendo el palo de fiesta por excelencia: veloz, flexible, capaz de tragarse cualquier copla o canción. El primer impulso se atribuye al jerezano El Loco Mateo.",
+        figura: "La Paquera de Jerez", datos: "Francisca Méndez, Jerez, 1934–2004",
+        nota: "Voz de trueno del barrio de San Miguel: nadie ha cantado la bulería con más poderío.",
+        ej: { id: "VjVoxIGxzwg", t: "Bulerías", d: "Canal Sur, 1990, con Parrilla de Jerez" }, q: "bulerías de Jerez cante" },
+      { nombre: "Taranta y taranto", fecha: "c. 1880–1900", lugar: "Almería, Linares, La Unión",
+        compas: ["libre", null, "Libre; el taranto, binario, es su versión bailable"],
+        texto: "Los fandangos de Almería bajan a la mina. En las cuencas de Almería, Linares y Cartagena los mineros andaluces hacen cantes libres, de melodía áspera, con un toque de guitarra propio lleno de disonancias.",
+        figura: "Carmen Linares", datos: "Linares, 1951",
+        nota: "Tomó el nombre de su pueblo minero y grabó en 1996 la antología «La mujer en el cante».",
+        ej: { id: "tUuXaTBmuTY", t: "A Linares que es mi pueblo", d: "tarantas, 1984" }, q: "taranta taranto cante flamenco" },
+      { nombre: "Minera y cartagenera", fecha: "c. 1890–1900", lugar: "La Unión y Cartagena",
+        compas: ["libre", null, "Libre, sin compás"],
+        texto: "Rojo el Alpargatero fijó la minera en los cafés de La Unión; la cartagenera, más cantable, la pulió Chacón. Desde 1961 el Festival del Cante de las Minas premia la mejor minera con la Lámpara Minera.",
+        figura: "Antonio Piñana", datos: "Cartagena, 1913–1989",
+        nota: "Aprendió los estilos del hijo de Rojo el Alpargatero y ganó la primera edición del festival.",
+        ej: { id: "i4CjeNqZYKE", t: "De Cartagena salí", d: "cartagenera de La Trini" }, q: "minera cartagenera cante de las minas" },
+      { nombre: "Granaína", fecha: "c. 1890–1905", lugar: "Granada",
+        compas: ["libre", null, "Libre, sin compás"],
+        texto: "Chacón toma el fandango de Granada y lo convierte en dos cantes libres de gran lucimiento, la granaína y la media granaína. Vallejo, Marchena y más tarde Morente las hicieron suyas.",
+        figura: "Antonio Chacón", datos: "Jerez, 1869–1929",
+        nota: "Creador de ambos estilos; aquí, en una de sus grabaciones restauradas.",
+        ej: { id: "gFbc1rJHSjA", t: "Media granadina y granadina", d: "colección Carlos Martín Ballester" }, q: "granaína media granaína cante" },
+      { nombre: "Petenera", fecha: "c. 1880–1910", lugar: "Paterna de Rivera, según la tradición",
+        compas: ["12", GUAJI, "12 tiempos · acentos en 1, 4, 7, 9 y 11"],
+        texto: "Canción de moda en el último tercio del XIX que Medina el Viejo aflamencó y La Niña de los Peines hizo grande. La leyenda la atribuye a una cantaora de Paterna; su parentesco con la petenera mexicana se sigue discutiendo. Cante triste, con fama de traer mala suerte.",
+        figura: "La Niña de los Peines", datos: "Pastora Pavón, Sevilla, 1890–1969",
+        nota: "Sus peteneras son el modelo que siguen todas las demás.",
+        ej: { id: "xqWw8fdVJdo", t: "Quisiera yo renegar", d: "peteneras, con Ramón Montoya" }, q: "petenera cante flamenco" },
+      { nombre: "Garrotín y farruca", fecha: "c. 1900–1910", lugar: "Del norte al sur: Asturias, Galicia, Cataluña",
+        compas: ["bin", null, "Binario (4/4)"],
+        texto: "Dos folclores del norte aflamencados a principios del XX. El garrotín se relaciona con Asturias y con los gitanos de Lleida y Valls; la farruca, de aire gallego, se convirtió en baile de hombre con Faíco y la guitarra de Ramón Montoya.",
+        figura: "Rafael Romero «El Gallina»", datos: "Andújar, 1910 – Madrid, 1991",
+        nota: "El garrotín moderno también pasa por él: aquí lo canta para el baile.",
+        ej: { id: "D99mo6y44hc", t: "Garrotín", d: "1964, con el baile de Mariquilla" }, q: "garrotín farruca flamenco" },
+      { nombre: "Saeta flamenca", fecha: "c. 1900–1920", lugar: "Sevilla, Jerez, Málaga",
+        compas: ["libre", null, "Libre, a palo seco, por seguiriyas o por martinetes"],
+        texto: "La saeta era un canto llano de penitencia. A comienzos del XX se canta por seguiriyas y por martinetes, desde un balcón, al paso de las imágenes de Semana Santa. Manuel Centeno fijó el modelo; Manuel Torre, La Niña de la Alfalfa y Vallejo lo engrandecieron.",
+        figura: "Manuel Centeno", datos: "Sevilla",
+        nota: "Considerado uno de los mejores saeteros de todos los tiempos.",
+        ej: { id: "FHRj9N867rE", t: "Virgen de la Amargura", d: "saeta" }, q: "saeta flamenca Semana Santa" }
+    ] },
+
+  { id: "ida-y-vuelta", mar: true, anos: "c. 1860–1931", nombre: "Ida y vuelta", lema: "Los cantes que cruzaron el Atlántico dos veces",
+    texto: "Sevilla y Cádiz fueron durante tres siglos el puerto de América. Por ahí salieron romances, décimas, zapateados y fandangos, y por ahí volvieron, cambiados por criollos, africanos e indígenas. A finales del XIX esas músicas entran en el flamenco y con la ópera flamenca se vuelven sus cantes más populares: melodiosos, en modo mayor, con letras de ingenios, pampas y palmeras.",
+    viaje: true,
+    hitos: [
+      ["1898", "Pérdida de Cuba. Con los soldados repatriados vuelven guajiras, puntos y habaneras."],
+      ["c. 1911", "Manuel Escacena populariza la «Milonga de Juan Simón», que aprendió de unos toreros mexicanos."],
+      ["1931", "Pepe Marchena estrena la colombiana, el último palo de la familia."]
+    ],
+    palos: [
+      { nombre: "Guajira", fecha: "c. 1860–1900", lugar: "Cuba → Cádiz y Sevilla",
+        compas: ["12", GUAJI, "12 tiempos · acentos en 1, 4, 7, 9 y 11"],
+        texto: "Del punto guajiro de los campesinos cubanos: décimas de diez versos, modo mayor y un compás que alterna 6/8 y 3/4. Fue seguramente el primer cante de ida y vuelta, traído por soldados, marineros e indianos, con letras de La Habana, tabaco y cañaverales.",
+        figura: "Pepe Marchena", datos: "Marchena, 1903–1976",
+        nota: "El gran divo de la ópera flamenca: voz dulce, falsete y un gusto declarado por todo lo que venía de América.",
+        ej: { id: "jnoxMOa695c", t: "Contigo me caso, indiana", d: "guajiras, con Niño Ricardo" }, q: "guajira flamenca cante" },
+      { nombre: "Rumba", fecha: "c. 1900–1915", lugar: "La Habana → Cádiz, Sevilla, Barcelona",
+        compas: ["bin", null, "Binario (4/4)"],
+        texto: "Hija de la guaracha del teatro musical de La Habana más que de la rumba cubana, entra por los espectáculos de variedades mezclada con los tangos. En los años cincuenta los gitanos de Barcelona le dan su rasgueo de «ventilador» y nace la rumba catalana.",
+        figura: "Peret", datos: "Pere Pubill Calaf, Mataró, 1935–2014",
+        nota: "Con El Pescaílla, el padre de la rumba catalana. La rumba instrumental más famosa, «Entre dos aguas», está en Fusiones.",
+        ej: { id: "5nchCNteFm0", t: "Borriquito", d: "actuación en TVE; canción de 1971" }, q: "rumba flamenca rumba catalana" },
+      { nombre: "Milonga", fecha: "c. 1890–1911", lugar: "Río de la Plata → Sevilla",
+        compas: ["bin", null, "Binario, muchas veces cantado sin compás estricto"],
+        texto: "La milonga rioplatense, canto de payadores. La cantaora Pepa de Oro la aprende de gira por América y la trae aflamencada; Escacena le da su primer gran éxito y en los años treinta llega al cine.",
+        figura: "Angelillo", datos: "Ángel Sampedro, Madrid, 1908 – Buenos Aires, 1973",
+        nota: "Estrella de la película «La hija de Juan Simón» (1935). Pasó en Argentina el exilio de la Guerra Civil y murió en Buenos Aires: su vida también cruzó el océano.",
+        ej: { id: "8pow1JoQm1U", t: "Milonga de Juan Simón", d: "1935" }, q: "milonga flamenca cante" },
+      { nombre: "Vidalita", fecha: "c. 1910–1930", lugar: "Argentina y Uruguay → Andalucía",
+        compas: ["libre", null, "Libre, o binario muy lento"],
+        texto: "Canción melancólica del folclore argentino y uruguayo, tan cercana a la milonga que algunos no las distinguen. Se canta despacio y repite la palabra «vidalita» como estribillo. La popularizaron Pepe Marchena y Juan Valderrama.",
+        figura: "Mayte Martín", datos: "Barcelona, 1965",
+        nota: "Su versión, adaptada de la de Valderrama, es la que hoy aprende todo el mundo.",
+        ej: { id: "Diy2fyu20qU", t: "Vidalita", d: "del disco «Querencia», 2000" }, q: "vidalita flamenca cante" },
+      { nombre: "Colombiana", fecha: "1931", lugar: "Inventada en España",
+        compas: ["bin", null, "Binario (4/4), aire de tangos"],
+        texto: "Uno de los pocos palos con fecha y autor: Pepe Marchena la estrena en 1931 con «Mi colombiana». De Colombia solo tiene el nombre; según la explicación más repetida, mezcla un corrido mexicano con un zortziko vasco. Un cante de ida y vuelta que nunca hizo el viaje.",
+        figura: "Pepe Marchena", datos: "Marchena, 1903–1976",
+        nota: "Su creador. Después la grabaron de El Lebrijano a Morente.",
+        ej: { id: "COEwCPDggvo", t: "Mi colombiana", d: "la grabación que fundó el palo" }, q: "colombiana cante flamenco" }
+    ] },
+
+  { id: "opera", anos: "1920–1955", nombre: "Ópera flamenca", lema: "Plazas de toros, teatros y fandangos",
+    texto: "El flamenco llena teatros y plazas de toros con compañías en gira. Mandan los fandangos, los cantes de ida y vuelta y las voces agudas y adornadas, con Pepe Marchena como ídolo; los cantes más duros quedan en segundo plano. Falla y Lorca reaccionan con el concurso de Granada.",
+    hitos: [
+      ["1922", "Concurso de Cante Jondo de Granada, promovido por Manuel de Falla y Federico García Lorca. Ganan Diego Bermúdez «El Tenazas» y un niño de 12 años, Manolo Caracol."],
+      ["1926", "Manuel Vallejo recibe la segunda Llave de Oro del Cante."],
+      ["1936–1939", "Guerra Civil. Se exilian Sabicas, Carmen Amaya y Angelillo, entre otros."]
+    ],
+    palos: [
+      { nombre: "Fandango natural", fecha: "c. 1920–1940", lugar: "Sevilla, Huelva, Madrid",
+        compas: ["libre", null, "Libre, sin compás"],
+        texto: "El fandango se suelta del compás de Huelva y cada cantaor crea el suyo: Vallejo, El Carbonerillo, El Gloria, Marchena, Caracol, Pepe Pinto. Es el cante estrella de la ópera flamenca, hecho para teatros llenos.",
+        figura: "Manuel Vallejo", datos: "Sevilla, 1891–1960",
+        nota: "Dominaba todos los palos, pero el público le pedía fandangos.",
+        ej: { id: "AmxkVByrPXo", t: "Creyendo que iba a volver", d: "fandangos, con Antonio Moreno" }, q: "fandangos naturales cante flamenco" },
+      { nombre: "Zambra", fecha: "c. 1943–1950", lugar: "Sevilla y Madrid",
+        compas: ["bin", null, "Binario (4/4), lento"],
+        texto: "No es la zambra de las cuevas del Sacromonte, sino una canción teatral con orquesta que Manolo Caracol canta y Lola Flores baila en sus espectáculos de los años cuarenta, con letras de Quintero, León y Quiroga. A medio camino entre la copla y el cante.",
+        figura: "Manolo Caracol", datos: "Sevilla, 1909–1973",
+        nota: "De la saga de los Ortega. Ganó de niño el concurso de Granada y de adulto llevó el cante jondo al teatro con orquesta.",
+        ej: { id: "4IosNjHBeUs", t: "La Salvaora", d: "con Lola Flores, 1946" }, q: "zambra Manolo Caracol" },
+      { nombre: "Bambera", fecha: "1949", lugar: "Sevilla",
+        compas: ["12", SOLEA, "Libre en origen; hoy, a compás de soleá por bulerías"],
+        texto: "Las bambas eran coplas que se cantaban al mecerse en el columpio en las fiestas de los pueblos andaluces. La Niña de los Peines las aflamenca y las graba en 1949; años después se les pone compás.",
+        figura: "La Niña de los Peines", datos: "Pastora Pavón, Sevilla, 1890–1969",
+        nota: "Con casi sesenta años todavía fue capaz de añadir un palo al repertorio.",
+        ej: { id: "140Lusr5mdQ", t: "Entre sábanas de holanda", d: "bambera, con Melchor de Marchena" }, q: "bamberas cante flamenco" }
+    ] },
+
+  { id: "revalorizacion", anos: "1955–1970", nombre: "Revalorización", lema: "Vuelta a los cantes antiguos",
+    texto: "Antologías discográficas, concursos, peñas, festivales de verano y los primeros estudios serios ponen orden en el repertorio y rescatan tonás, romances, cañas y polos. Antonio Mairena encabeza el movimiento. No nacen palos nuevos: se recuperan los que estaban a punto de perderse.",
+    hitos: [
+      ["1954", "Perico el del Lunar dirige la primera «Antología del cante flamenco», grabada para un sello francés y editada después por Hispavox."],
+      ["1956", "Concurso Nacional de Cante Jondo de Córdoba: Fosforito gana en todas las secciones."],
+      ["1957", "Potaje Gitano de Utrera, el primer festival flamenco de verano."],
+      ["1958", "Se crea la Cátedra de Flamencología de Jerez."],
+      ["1961", "Primer Festival del Cante de las Minas, en La Unión."],
+      ["1962", "Antonio Mairena recibe en Córdoba la tercera Llave de Oro del Cante.", { id: "TmgQS_LSRVo", t: "Antonio Mairena. Soleares de Alcalá", l: "Escúchalo" }],
+      ["1971–1973", "TVE emite «Rito y geografía del cante»: casi cien programas filmados por toda Andalucía.", { id: "qDl8DOU3U_E", t: "Rito y geografía del cante: romances, tientos y tangos", l: "Ver un capítulo" }]
+    ],
+    palos: [] },
+
+  { id: "revolucion", anos: "1970–hoy", nombre: "Revolución", lema: "Camarón, Paco de Lucía, Morente",
+    texto: "Camarón de la Isla y Paco de Lucía, criados en la tradición, la abren por dentro: nueva armonía, estribillos, instrumentos de fuera. Enrique Morente hace lo mismo desde la poesía y la vanguardia. Desde entonces el flamenco avanza en dos direcciones a la vez, hacia la raíz y hacia la mezcla.",
+    hitos: [
+      ["1969", "Camarón y Paco de Lucía graban su primer disco juntos."],
+      ["1977", "Paco de Lucía descubre el cajón en Perú y lo incorpora a su grupo. Hoy parece flamenco de toda la vida."],
+      ["1992", "Muere Camarón, a los 41 años."],
+      ["2010", "El 16 de noviembre la Unesco inscribe el flamenco en la Lista Representativa del Patrimonio Cultural Inmaterial de la Humanidad."],
+      ["2014", "Muere Paco de Lucía."]
+    ],
+    palos: [
+      { nombre: "Canastera", fecha: "1972", lugar: "San Fernando y Algeciras",
+        compas: ["ter", null, "Ternario (3/4), aire de fandango"],
+        texto: "Camarón y Paco de Lucía crean un palo nuevo para abrir el disco «Canastera»: un fandango a compás con estribillo y armonía moderna. Es la prueba de que el repertorio no estaba cerrado.",
+        figura: "Camarón de la Isla", datos: "José Monje, San Fernando, 1950–1992",
+        nota: "Con él cambia la manera de cantar de todas las generaciones siguientes.",
+        ej: { id: "oclw2-RRKXI", t: "Canastera", d: "con Paco de Lucía y Ramón de Algeciras" }, q: "canastera Camarón" }
+    ] }
+];
+
+var FUSIONES = [
+  { col: 0, nombre: "Con el jazz", texto: "Primero fue el jazz el que miró al flamenco. Después Paco de Lucía aprendió a improvisar con sus acordes y ya no hubo vuelta atrás.",
+    items: [
+      ["1960", "Solea", "Miles Davis y Gil Evans", "Del disco «Sketches of Spain». Davis improvisa sobre el modo y el compás de la soleá un año después de «Flamenco Sketches».", "fe8XfcClcB4"],
+      ["1967", "Bulerías", "Pedro Iturralde Quintet con Paco de Lucía", "Del disco «Jazz Flamenco», grabado en Madrid el 14 de septiembre de 1967. Un saxofonista navarro y un guitarrista de 19 años firman el acta de nacimiento del flamenco-jazz.", "M5I65LODdfI"],
+      ["1973", "Entre dos aguas", "Paco de Lucía", "Una rumba improvisada al final de la grabación de «Fuente y caudal», con bajo eléctrico y bongos. Fue número uno y la puerta de entrada del gran público.", "2oyhlad64-s"],
+      ["1981", "Mediterranean Sundance / Río Ancho", "Al Di Meola, John McLaughlin y Paco de Lucía", "Del disco «Friday Night in San Francisco», grabado en directo el 5 de diciembre de 1980. Tres guitarras acústicas a una velocidad que nadie había oído.", "OYDxM5OjmZI"],
+      ["1996", "Bulerías al piano", "Chano Domínguez", "Un pianista gaditano de jazz que toca con compás flamenco. En 2012 devolvió la visita a Miles Davis con su propio «Flamenco Sketches».", "bHE_H_6DKm8"],
+      ["2003", "Lágrimas negras", "Bebo Valdés y Diego el Cigala", "Un pianista cubano de 84 años y un cantaor madrileño cantan boleros y sones por derecho. Otro viaje de ida y vuelta, un siglo después.", "Bnc7Bz57CME"]
+    ] },
+  { col: 1, nombre: "Con el rock", texto: "Sevilla, finales de los sesenta: melenas, guitarras eléctricas y compás. De ahí salen el rock andaluz y el disco que partió el flamenco en dos.",
+    items: [
+      ["1970", "Inca Song", "Sabicas y Joe Beck", "Del disco «Rock Encounter», grabado en Nueva York en 1966 y publicado en 1970: el patriarca de la guitarra flamenca con una banda eléctrica.", "gpkNPnJKmYM"],
+      ["1971", "El garrotín", "Smash", "Rock psicodélico sevillano con Manuel Molina cantando lo flamenco, mitad en inglés y mitad en español. El palo de 1900 convertido en éxito pop.", "uxDEzGukBq4"],
+      ["1975", "Abre la puerta", "Triana", "Abre «El patio», el disco fundacional del rock andaluz: rock progresivo con guitarra flamenca y quejío.", "g-FUD_246vs"],
+      ["1975", "Nuevo día", "Lole y Manuel", "Flamenco luminoso y hippy, con letras propias y ecos árabes. Con ellos empieza a hablarse de nuevo flamenco.", "zG5BEGpWkkc"],
+      ["1977", "Los delincuentes", "Veneno", "Kiko Veneno con Raimundo y Rafael Amador, producidos por Ricardo Pachón: flamenco, rock y humor de barrio. Pasó casi inadvertido y lo cambió todo.", "3yyFhwvBwRY"],
+      ["1979", "La leyenda del tiempo", "Camarón", "Lorca, bajo eléctrico, batería y teclados, con Tomatito, Raimundo Amador y Kiko Veneno. Muchos aficionados lo rechazaron; hoy es el punto de no retorno.", "0usfxEYijXY"],
+      ["1987", "Blues de la frontera", "Pata Negra", "Los hermanos Amador cruzan el blues con la bulería: guitarra flamenca, guitarra eléctrica y compás.", "HraQTKLh-VU"],
+      ["1996", "Omega", "Enrique Morente y Lagartija Nick", "Lorca y Leonard Cohen, cante jondo y guitarras de ruido. Incomprendido al salir, hoy es el gran disco de vanguardia del flamenco.", "oFvmrW7G8S4"]
+    ] },
+  { col: 0, nombre: "Con otras músicas", texto: "Pop, música andalusí, África occidental y la orquesta sinfónica.",
+    items: [
+      ["1974", "Te estoy amando locamente", "Las Grecas", "Carmela y Tina Muñoz: voces gitanas, guitarra eléctrica y producción pop. Lo llamaron gipsy rock.", "XGbf2lDwSec"],
+      ["1985", "Dame la libertad", "El Lebrijano y la Orquesta Andalusí de Tánger", "Del disco «Encuentros», sobre un poema de Caballero Bonald. El cante se reencuentra con la música del otro lado del Estrecho.", "lY3WS1V0hWk"],
+      ["1988", "Songhai", "Ketama, Toumani Diabaté y Danny Thompson", "Guitarras flamencas, kora de Malí y contrabajo inglés. El disco completo.", "HqlDve4FTV8"],
+      ["1988", "Oración", "Manolo Sanlúcar", "Rondeña del disco «Tauromagia», una corrida de toros contada como una suite. Guitarra flamenca con ambición de música de concierto.", "daY_KDKZHuw"]
+    ] },
+  { col: 1, nombre: "Siglo XXI", texto: "Electrónica, música urbana y vuelta a los cantes más antiguos.",
+    items: [
+      ["2002", "Ahí estás tú", "Chambao", "Flamenco chill: una voz de Málaga sobre bases electrónicas lentas.", "0R4ZiXlWig8"],
+      ["2018", "Malamente", "Rosalía", "Del disco «El mal querer». Palmas, compás y melismas flamencos sobre producción urbana: la fusión que más lejos ha llegado.", "Rht7rBHuXW8"],
+      ["2022", "Grande", "Rocío Márquez y Bronquio", "Del disco «Tercer cielo». Una debla, el cante sin guitarra de 1800, sobre sintetizadores. El círculo se cierra.", "pCnWl1GJl-g"]
+    ] }
+];
+
+/* ═══════════════════════ Utilidades ═══════════════════════ */
+
+function $(s, r) { return (r || document).querySelector(s); }
+function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+function yt(id) { return "https://www.youtube.com/watch?v=" + id; }
+function ytBuscar(q) { return "https://www.youtube.com/results?search_query=" + encodeURIComponent(q); }
+
+var PLAY = '<svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0l12 7-12 7z" fill="currentColor"/></svg>';
+var ONDA = '<svg viewBox="0 0 96 12" aria-hidden="true"><path d="M1 6c6-7 10 7 16 0s10 7 16 0 10 7 16 0 10 7 16 0 10 7 16 0 8 5 13 1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+var VIDEOS = [];
+function reg(id, titulo, sub) { VIDEOS.push({ id: id, titulo: titulo, sub: sub || "" }); return VIDEOS.length - 1; }
+
+/* ¿Dónde estamos? Dentro del visor de Claude los reproductores incrustados están bloqueados,
+   y YouTube rechaza la reproducción si la página se abre desde el disco (file://). */
+var enVisor = false;
+try {
+  enVisor = !!window.claude || (location.ancestorOrigins && Array.prototype.some.call(location.ancestorOrigins, function (o) { return /claude\.ai|anthropic\.com/.test(o); }));
+} catch (e) { enVisor = false; }
+var enDisco = location.protocol === "file:";
+var puedeIncrustar = !enVisor && !enDisco;
+
+/* ═══════════════════════ Pintar ═══════════════════════ */
+
+function pintarDocs() {
+  var h = DOCUMENTALES.map(function (d, i) {
+    var k = reg(d.id, d.titulo, d.meta);
+    var img = enVisor ? "" : '<img class="poster__img" alt="" loading="lazy" src="https://i.ytimg.com/vi/' + d.id + '/hqdefault.jpg">';
+    return '<li class="doc' + (i < 2 ? " doc--lead" : "") + '"><button type="button" class="doc__btn" data-v="' + k + '">' +
+      '<span class="poster">' + img + '<span class="poster__tag">' + esc(d.sello) + '</span><span class="poster__play">' + PLAY + '</span></span>' +
+      '<span class="doc__title">' + esc(d.titulo) + '</span>' +
+      '<span class="doc__meta">' + esc(d.meta) + '</span>' +
+      '<span class="doc__text">' + esc(d.texto) + '</span></button></li>';
+  }).join("");
+  h += '<li class="doc"><a class="doc__more" href="' + SERIE_COMPLETA.url + '" target="_blank" rel="noopener"><b>' + esc(SERIE_COMPLETA.titulo) + '</b><span>' + esc(SERIE_COMPLETA.texto) + '</span></a></li>';
+  $("#docs").innerHTML = h;
+  Array.prototype.forEach.call(document.querySelectorAll(".poster__img"), function (im) {
+    function ok() { if (im.naturalWidth > 200) im.classList.add("is-in"); else im.remove(); }
+    if (im.complete && im.naturalWidth) ok(); else { im.addEventListener("load", ok); im.addEventListener("error", function () { im.remove(); }); }
+  });
+}
+
+function compas(c) {
+  var dots = "", i;
+  if (c[0] === "12") { for (i = 1; i <= 12; i++) dots += '<i' + (c[1].indexOf(i) > -1 ? ' class="on"' : "") + '></i>'; }
+  else if (c[0] === "bin") { dots = "<i></i><i></i><i></i><i></i>"; }
+  else if (c[0] === "ter") { dots = '<i></i><i></i><i></i><i class="gap"></i><i></i><i></i><i></i>'; }
+  else { dots = ONDA; }
+  return '<div class="compas" role="img" aria-label="Compás: ' + esc(c[2]) + '"><span class="compas__dots">' + dots + '</span><span class="compas__label">' + esc(c[2]) + '</span></div>';
+}
+
+function escuchar(ej, figura, q) {
+  var k = reg(ej.id, ej.t, figura + (ej.d ? " · " + ej.d : ""));
+  var h = '<button type="button" class="play" data-v="' + k + '"><span class="play__ic">' + PLAY + '</span><span><b>' + esc(ej.t) + '</b>' + (ej.d ? " · " + esc(ej.d) : "") + '</span></button>' +
+    '<a class="out" href="' + yt(ej.id) + '" target="_blank" rel="noopener">YouTube ↗</a>';
+  if (q) h += '<a class="out" href="' + ytBuscar(q) + '" target="_blank" rel="noopener">Más versiones ↗</a>';
+  return h;
+}
+
+function pintarPalo(p) {
+  var aviso = p.aviso ? '<p class="palo__aside"><b>' + esc(p.aviso[0]) + '</b>' + esc(p.aviso[1]) + '</p>' : "";
+  var otro = "";
+  if (p.otro) { var k = reg(p.otro.id, p.otro.t, ""); otro = '<button type="button" class="linkplay" data-v="' + k + '">' + PLAY + 'Compara: ' + esc(p.otro.t) + '</button>'; }
+  return '<li class="tl-item"><p class="tl-date">' + esc(p.fecha) + '</p><span class="tl-node" aria-hidden="true"></span>' +
+    '<article class="palo"><h4 class="palo__name">' + esc(p.nombre) + '</h4><p class="palo__place">' + esc(p.lugar) + '</p>' +
+    compas(p.compas) + '<p class="palo__text">' + esc(p.texto) + '</p>' + aviso +
+    '<div class="figura"><p class="label">Figura de referencia</p><p class="figura__name">' + esc(p.figura) + ' <span>(' + esc(p.datos) + ')</span></p><p class="figura__note">' + esc(p.nota) + '</p></div>' +
+    '<div class="listen">' + escuchar(p.ej, p.figura, p.q) + otro + '</div></article></li>';
+}
+
+function pintarEra(e) {
+  var hitos = e.hitos.map(function (h) {
+    var b = "";
+    if (h[2]) { var k = reg(h[2].id, h[2].t, ""); b = ' <button type="button" class="linkplay" data-v="' + k + '">' + PLAY + esc(h[2].l) + '</button>'; }
+    return "<li><b>" + esc(h[0]) + "</b><span>" + esc(h[1]) + b + "</span></li>";
+  }).join("");
+  var viaje = !e.viaje ? "" :
+    '<div class="viaje" role="img" aria-label="Ida: de Andalucía a América, siglos XVI al XIX. Vuelta: de América a Andalucía, hacia 1850 a 1930.">' +
+    '<p class="viaje__end">América<small>La Habana · Veracruz · Río de la Plata</small></p>' +
+    '<div class="viaje__arrows"><div class="flecha flecha--ida"><span>Ida · s. XVI–XIX</span></div><div class="flecha flecha--vuelta"><span>Vuelta · c. 1850–1930</span></div></div>' +
+    '<p class="viaje__end">Andalucía<small>Sevilla · Cádiz</small></p></div>' +
+    '<div class="dosvias"><p><b>Lo que se fue</b>Romances, décimas, jácaras, zapateados, fandangos y seguidillas, con marineros, soldados y colonos.</p>' +
+    '<p><b>Lo que volvió</b>Punto guajiro, guaracha, milonga y vidalita, con soldados repatriados, toreros, artistas de gira e indianos.</p></div>';
+  return '<section class="era' + (e.mar ? " era--sea" : "") + '" id="' + e.id + '"><div class="wrap">' +
+    '<header class="era__head"><div><p class="era__years">' + esc(e.anos) + '</p><h3 class="era__name">' + esc(e.nombre) + '</h3><p class="era__lema">' + esc(e.lema) + '</p></div>' +
+    '<div><p class="era__text">' + esc(e.texto) + '</p>' + viaje + '<ul class="hitos">' + hitos + '</ul></div></header>' +
+    (e.palos.length ? '<ol class="tl">' + e.palos.map(pintarPalo).join("") + '</ol>' : "") + '</div></section>';
+}
+
+function pintarFusiones() {
+  var cols = ["", ""];
+  FUSIONES.forEach(function (g) {
+    cols[g.col] += '<section class="fx-group"><h3>' + esc(g.nombre) + '</h3><p>' + esc(g.texto) + '</p><ol class="fx-list">' +
+      g.items.map(function (it) {
+        var k = reg(it[4], it[1], it[2] + " · " + it[0]);
+        return '<li class="fx"><span class="fx__year">' + esc(it[0]) + '</span><div><p class="fx__title">' + esc(it[1]) + ' <span>· ' + esc(it[2]) + '</span></p><p class="fx__note">' + esc(it[3]) + '</p></div>' +
+          '<div class="listen"><button type="button" class="play play--sm" data-v="' + k + '"><span class="play__ic">' + PLAY + '</span><span>Escuchar</span></button>' +
+          '<a class="out" href="' + yt(it[4]) + '" target="_blank" rel="noopener">YouTube ↗</a></div></li>';
+      }).join("") + '</ol></section>';
+  });
+  $("#fx").innerHTML = "<div>" + cols[0] + "</div><div>" + cols[1] + "</div>";
+}
+
+function pintarNav() {
+  var nPalos = 0, nMar = 0, nFus = 0;
+  ERAS.forEach(function (e) { nPalos += e.palos.length; if (e.mar) nMar = e.palos.length; });
+  FUSIONES.forEach(function (g) { nFus += g.items.length; });
+  $("#hero-nav").innerHTML =
+    '<a href="#documentales"><b>' + DOCUMENTALES.length + '</b> documentales</a>' +
+    '<a href="#cronologia"><b>' + nPalos + '</b> palos en la cronología</a>' +
+    '<a href="#ida-y-vuelta"><b>' + nMar + '</b> cantes de ida y vuelta</a>' +
+    '<a href="#fusiones"><b>' + nFus + '</b> fusiones</a>';
+  $("#eras-nav").innerHTML = ERAS.map(function (e) {
+    return '<a href="#' + e.id + '"' + (e.mar ? ' class="sea"' : "") + '><b>' + esc(e.nombre) + '</b> ' + esc(e.anos) + '</a>';
+  }).join("");
+}
+
+function avisoIncrustar() {
+  var n = $("#embed-note");
+  if (puedeIncrustar) { n.hidden = true; return; }
+  n.textContent = enDisco
+    ? "Has abierto la página desde el disco y YouTube solo deja reproducir dentro de páginas servidas por http(s). Mientras tanto, cada vídeo se abre en YouTube desde la ventana flotante."
+    : "Este visor no admite reproductores incrustados: la ventana flotante te lleva al vídeo en YouTube. Con la página publicada en una web, se reproduce dentro de la ventana.";
+  n.hidden = false;
+}
+
+/* El título ocupa siempre todo el ancho, cargue la tipografía que cargue. */
+function ajustarTitulo() {
+  var caja = $("#hero-lg"), palabra = caja && caja.firstElementChild;
+  if (!palabra) return;
+  caja.style.fontSize = "";
+  var base = parseFloat(getComputedStyle(caja).fontSize), ancho = palabra.getBoundingClientRect().width;
+  if (ancho > 0) caja.style.fontSize = Math.min(330, Math.floor(base * caja.clientWidth / ancho * 0.995)) + "px";
+}
+ajustarTitulo();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarTitulo);
+var espera = 0;
+window.addEventListener("resize", function () { cancelAnimationFrame(espera); espera = requestAnimationFrame(ajustarTitulo); });
+
+pintarDocs();
+$("#eras").innerHTML = ERAS.map(pintarEra).join("");
+pintarFusiones();
+pintarNav();
+avisoIncrustar();
+
+/* ═══════════════════════ Los palos van apareciendo ═══════════════════════ */
+
+var sinMovimiento = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!sinMovimiento && "IntersectionObserver" in window) {
+  var io = new IntersectionObserver(function (ents) {
+    ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.remove("pending"); io.unobserve(en.target); } });
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0 });
+  Array.prototype.forEach.call(document.querySelectorAll(".tl-item"), function (el) {
+    if (el.getBoundingClientRect().top > window.innerHeight * 0.9) { el.classList.add("pending"); io.observe(el); }
+  });
+}
+
+/* ═══════════════════════ Navegación interna ═══════════════════════ */
+
+document.addEventListener("click", function (ev) {
+  var a = ev.target.closest && ev.target.closest('a[href^="#"]');
+  if (!a) return;
+  var el = document.getElementById(a.getAttribute("href").slice(1));
+  if (!el) return;
+  ev.preventDefault();
+  el.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "start" });
+  try { history.replaceState(null, "", "#" + el.id); } catch (e) {}
+});
+
+/* ═══════════════════════ Ventana flotante ═══════════════════════ */
+
+var fw = $("#fw"), panel = $("#fw-panel"), stage = $("#fw-stage"), fwTitle = $("#fw-title"), fwSub = $("#fw-sub"),
+    fwLink = $("#fw-link"), btnDock = $("#fw-dock"), btnClose = $("#fw-close");
+var actual = null, foco = null, acoplada = false;
+
+function montar() {
+  stage.textContent = "";
+  if (puedeIncrustar) {
+    var f = document.createElement("iframe");
+    f.title = actual.titulo;
+    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    f.allowFullscreen = true;
+    f.referrerPolicy = "strict-origin-when-cross-origin";
+    f.src = "https://www.youtube-nocookie.com/embed/" + actual.id + "?autoplay=1&rel=0&playsinline=1";
+    stage.appendChild(f);
+    btnDock.hidden = false; fwLink.hidden = false;
+  } else {
+    if (acoplada) acoplar(false);
+    stage.innerHTML = '<div class="fw__fallback"><a class="fw__go" href="' + yt(actual.id) + '" target="_blank" rel="noopener"><i>' + PLAY + '</i>Ver en YouTube ↗</a><p>' +
+      (enDisco ? "Con la página abierta desde el disco, YouTube no deja reproducir aquí. Sírvela por http(s) y el vídeo sonará en esta ventana."
+               : "Aquí no se pueden incrustar vídeos. Con la página publicada en una web, el vídeo se reproduce en esta ventana.") + "</p></div>";
+    btnDock.hidden = true; fwLink.hidden = true;
+  }
+}
+
+function acoplar(si) {
+  acoplada = si;
+  fw.classList.toggle("is-docked", si);
+  panel.setAttribute("aria-modal", si ? "false" : "true");
+  btnDock.textContent = si ? "Ampliar" : "A la esquina";
+  document.documentElement.classList.toggle("no-scroll", !si && !fw.hidden);
+}
+
+function abrir(k, origen) {
+  var v = VIDEOS[k];
+  if (!v) return;
+  var seguir = !fw.hidden && acoplada;
+  actual = v;
+  if (fw.hidden) foco = origen || document.activeElement;
+  fwTitle.textContent = v.titulo;
+  fwSub.textContent = v.sub;
+  fwLink.href = yt(v.id);
+  fw.hidden = false;
+  acoplar(seguir);
+  montar();
+  if (!acoplada) btnClose.focus();
+}
+
+function cerrar() {
+  if (fw.hidden) return;
+  stage.textContent = "";
+  fw.hidden = true;
+  fw.classList.remove("is-docked");
+  acoplada = false;
+  document.documentElement.classList.remove("no-scroll");
+  actual = null;
+  if (foco && foco.focus) { try { foco.focus({ preventScroll: true }); } catch (e) {} }
+  foco = null;
+}
+
+document.addEventListener("click", function (ev) {
+  var b = ev.target.closest && ev.target.closest("[data-v]");
+  if (b) { abrir(+b.getAttribute("data-v"), b); }
+});
+btnClose.addEventListener("click", cerrar);
+$("#fw-backdrop").addEventListener("click", cerrar);
+btnDock.addEventListener("click", function () { acoplar(!acoplada); });
+
+document.addEventListener("keydown", function (ev) {
+  if (fw.hidden) return;
+  if (ev.key === "Escape") { cerrar(); return; }
+  if (ev.key === "Tab" && !acoplada) {
+    var f = Array.prototype.filter.call(panel.querySelectorAll("button, a[href]"), function (el) { return !el.hidden && el.offsetParent !== null; });
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (ev.shiftKey && (document.activeElement === first || !panel.contains(document.activeElement))) { ev.preventDefault(); last.focus(); }
+    else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+  }
+});
+
+/* Si una política de seguridad bloquea el reproductor, se cambia al enlace sin dejar un hueco en blanco. */
+document.addEventListener("securitypolicyviolation", function (ev) {
+  var d = String(ev.effectiveDirective || ev.violatedDirective || "");
+  if (/frame-src|child-src/.test(d) || (/youtube/.test(String(ev.blockedURI || "")) && !/img-src/.test(d))) {
+    if (!puedeIncrustar) return;
+    puedeIncrustar = false;
+    avisoIncrustar();
+    if (actual) montar();
+  }
+});
+
+})();
+</script>
+</body>
+</html>
