@@ -129,8 +129,11 @@ button{font:inherit;color:inherit}
 
 .era{padding:56px 0 16px;background:var(--page);color:var(--ink)}
 .era__head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px 48px;margin-bottom:40px}
+.era__head>div{min-width:0}
+.era__head>div:first-child{container-type:inline-size}
 .era__years{font:400 clamp(30px,4.6vw,56px)/1 var(--f-display);color:var(--accent);font-variant-numeric:tabular-nums}
 .era__name{font:400 clamp(44px,7.2vw,96px)/.9 var(--f-display);text-transform:uppercase;margin-top:6px}
+@supports (font-size:1cqi){.era__name{font-size:min(clamp(44px,7.2vw,96px),15.6cqi)}}
 .era__lema{font:italic 600 clamp(20px,2.2vw,26px)/1.2 var(--f-name);margin-top:12px}
 .era__text{max-width:62ch}
 .hitos{margin-top:18px;border-top:1.5px solid var(--line)}
@@ -164,7 +167,12 @@ button{font:inherit;color:inherit}
 .compas__dots svg{display:block;width:96px;height:12px;color:var(--accent)}
 .compas__label{font-size:13.5px;line-height:1.35;color:var(--muted)}
 .palo__text{margin-top:14px;max-width:62ch}
+.palo__mas{margin-top:10px;font-size:16px}
 .palo__aside{margin-top:14px;padding:10px 14px;border-left:4px solid var(--sea-mark);background:color-mix(in srgb,var(--sea-mark) 9%,transparent);font-size:15px;line-height:1.5;max-width:62ch}
+.palo__aside-links{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:8px}
+.palo__aside .linkplay{margin-left:0;text-align:left}
+.palo--suelto{padding-left:0}
+.docs__sub{margin:48px 0 22px;padding-top:18px;border-top:1.5px solid var(--line);font:italic 800 clamp(28px,3.4vw,40px)/1 var(--f-name)}
 .palo__aside b{display:block;font:600 12px/1.3 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--sea-mark);margin-bottom:3px}
 .figura{margin-top:18px;padding-top:12px;border-top:1.5px solid var(--line);max-width:62ch}
 .figura__name{margin-top:5px;font:700 19px/1.25 var(--f-body)}
@@ -236,6 +244,9 @@ button{font:inherit;color:inherit}
 .play--sm{padding:6px 14px 6px 7px;font-size:14px}
 .play--sm .play__ic{width:24px;height:24px}
 .play--sm .play__ic svg{width:9px;height:9px}
+.archivo__intro{max-width:76ch;color:var(--muted);font-size:16px;margin-bottom:4px}
+.fx-list--ancho .fx{grid-template-columns:88px minmax(0,1fr)}
+.fx-list--ancho .fx__year{font-size:21px;line-height:1.25}
 .gente{padding:14px 0;border-bottom:1.5px solid var(--line)}
 .gente__name{font:700 18px/1.3 var(--f-body)}
 .gente__name span{font-weight:400;font-size:15px;color:var(--muted)}
@@ -300,10 +311,12 @@ button{font:inherit;color:inherit}
     <div class="wrap">
       <header class="section__head">
         <h2>Documentales</h2>
-        <p>Para entrar en materia antes de la cronología. Todos están libres en YouTube; al pulsar uno se abre en una ventana flotante.</p>
+        <p>Para entrar en materia antes de la cronología: documentales y, debajo, conciertos y alguna curiosidad. Todo está libre en YouTube; al pulsar se abre en una ventana flotante.</p>
       </header>
       <p class="embed-note" id="embed-note" hidden></p>
       <ul class="docs" id="docs"></ul>
+      <h3 class="docs__sub">Conciertos y curiosidades</h3>
+      <ul class="docs" id="conciertos"></ul>
     </div>
   </section>
 
@@ -317,6 +330,16 @@ button{font:inherit;color:inherit}
       <p class="leyenda" id="leyenda"></p>
     </div>
     <div id="eras"></div>
+  </section>
+
+  <section class="section" id="sevillanas">
+    <div class="wrap">
+      <header class="section__head">
+        <h2>Sevillanas</h2>
+        <p>No son flamenco, pero conviven con él en cada feria y en cada fiesta, y los flamencos las cantan y las bailan. Una mención aparte, fuera de la cronología.</p>
+      </header>
+      <div id="sevi"></div>
+    </div>
   </section>
 
   <section class="section" id="fusiones">
@@ -339,13 +362,36 @@ button{font:inherit;color:inherit}
     </div>
   </section>
 
+  <section class="section" id="herederos">
+    <div class="wrap">
+      <header class="section__head">
+        <h2>Herederos</h2>
+        <p>Los que vienen y los que salieron de él: las nuevas promesas del cante, el toque y el baile, y los grupos que nacieron del flamenco y triunfaron sin ser flamenco en sentido estricto.</p>
+      </header>
+      <div class="fx-cols" id="herederos-lista"></div>
+    </div>
+  </section>
+
+  <section class="section" id="cine">
+    <div class="wrap">
+      <header class="section__head">
+        <h2>En el cine</h2>
+        <p>Escenas de Hollywood en las que aparece el flamenco y películas en las que se ha cantado y bailado flamenco de calidad. Cada una con su vídeo, por orden de fecha.</p>
+      </header>
+      <div class="fx-cols" id="cine-lista"></div>
+    </div>
+  </section>
+
   <section class="section" id="documentacion">
     <div class="wrap">
       <header class="section__head">
         <h2>Para saber más</h2>
-        <p>Información y documentación sobre el flamenco: archivos, radio y televisión, webs para entender los palos, revistas y textos. Todos los enlaces se abren en una pestaña nueva.</p>
+        <p>Información y documentación sobre el flamenco: archivos, radio y televisión, webs para entender los palos, revistas y textos. Todos los enlaces se abren en una pestaña nueva. Al final, un archivo sonoro con diez de las grabaciones más antiguas.</p>
       </header>
       <div class="fx-cols" id="recursos"></div>
+      <h3 class="docs__sub" id="archivo">Archivo sonoro: diez de las grabaciones más antiguas</h3>
+      <p class="archivo__intro">Las primeras grabaciones de flamenco son cilindros de cera de finales del siglo XIX, y casi ninguno lleva fecha: no existe una lista exacta de «las diez más antiguas». Estas diez van, hasta donde se puede saber, de aquellos cilindros a los primeros discos de pizarra de 1908–1910, y todas se pueden escuchar aquí. Los tres cilindros salen de la colección del Centro Andaluz de Documentación del Flamenco, que los publicó en 2003.</p>
+      <div class="fx-cols" id="archivo-lista"></div>
     </div>
   </section>
 </main>
@@ -408,6 +454,17 @@ var DOCUMENTALES = [
     meta: "Documental · «Ochéntame otra vez», TVE, 2015",
     texto: "Cómo el flamenco se cruzó con el rock, el jazz y el pop en los años setenta y ochenta. Buen prólogo para la sección de fusiones." }
 ];
+var CONCIERTOS = [
+  { id: "6i6j9d0qhu0", sello: "París · 1987", titulo: "Camarón y Tomatito en París",
+    meta: "Concierto completo · Cirque d'Hiver, 1987",
+    texto: "En mayo de 1987 Camarón llenó tres noches seguidas el Cirque d'Hiver con la sola compañía de la guitarra de Tomatito. Alegrías, tarantos, bulerías, tangos y fandangos; de aquí salió el disco «París 1987»." },
+  { id: "W_hxr-7psnk", sello: "Nueva York · 1990", titulo: "Camarón y Tomatito en Nueva York",
+    meta: "Fragmento · imágenes de TVE restauradas",
+    texto: "Un fragmento breve, en formato vertical, de Camarón y Tomatito en Nueva York, donde actuaron en el Palladium en 1990. Es lo único de aquella visita que he encontrado en vídeo." },
+  { id: "8EQ4as3soQY", sello: "Canal Sur · 1991", titulo: "Chiquito de la Calzada, al cante por tangos",
+    meta: "Curiosidad · Canal Sur, 1991",
+    texto: "Antes de hacerse famoso como humorista en 1994, Gregorio Sánchez (Málaga, 1932–2017) llevaba toda la vida de cantaor «de atrás», cantando para el baile en tablaos de España y de Japón. Aquí canta por tangos, tres años antes de la fama." }
+];
 var SERIE_COMPLETA = { titulo: "Rito y geografía del cante, la serie completa",
   texto: "Casi cien capítulos (1971–1973) en una lista de reproducción ↗",
   url: "https://www.youtube.com/playlist?list=PL4gdzP_7_dStTcxf3Vu8aRH1vIUJKHkN7" };
@@ -432,6 +489,7 @@ var ERAS = [
       { nombre: "Romance", fecha: "s. XV–XVIII", lugar: "Los Puertos, Jerez, Triana",
         compas: ["12", SOLEA, "Aire de soleá por bulerías, o a palo seco"],
         texto: "Los viejos romances castellanos, conservados de memoria en familias gitanas de Los Puertos y Jerez, que los llaman corridos. Es el eslabón entre el romancero medieval y las tonás: una historia cantada de corrido, sin estribillo.",
+        mas: "Se cantan en tiradas largas de versos de ocho sílabas, con la misma música repetida una y otra vez, y cuentan historias de Gerineldo, de Bernardo del Carpio o del conde Sol. Durante generaciones sonaron solo en bodas y fiestas de familia, sin guitarra; Antonio Mairena fue de los primeros en llevarlos al disco, con guitarra y a compás de soleá. El mismo aire tiene la alboreá, el cante de boda de los gitanos.",
         refs: [
           { figura: "El Negro del Puerto", datos: "José de los Reyes, El Puerto de Santa María",
             nota: "Guardó de memoria romances que ya casi nadie cantaba y los grabó para la «Magna antología del cante flamenco».",
@@ -456,6 +514,7 @@ var ERAS = [
       { nombre: "Toná y debla", fecha: "c. 1770–1800", lugar: "Triana, Jerez, Cádiz",
         compas: ["libre", null, "Libre, a palo seco (sin guitarra)"],
         texto: "El tronco del cante jondo: coplas de cuatro versos cantadas sin acompañamiento, nacidas del romance. De las tonás salen el martinete, la carcelera y la debla, la más adornada y difícil, que estuvo a punto de perderse.",
+        mas: "La copla es una cuarteta de versos de ocho sílabas y la voz va sola de principio a fin: por eso son cantes de enorme exigencia. Demófilo recogió en 1881 una lista de veintiséis tonás que ya entonces se tenían por cantes viejos y casi en desuso; hoy se cantan unas pocas, como la grande, la chica y la del Cristo. La debla, ligada a Triana, tiene un nombre de origen discutido, que suele relacionarse con la palabra «diosa» en caló.",
         refs: [
           { figura: "Tomás Pavón", datos: "Sevilla, 1893–1952",
             nota: "Hermano de La Niña de los Peines. Grabó poco, pero su debla es la vara de medir.",
@@ -471,6 +530,7 @@ var ERAS = [
       { nombre: "Martinete", fecha: "c. 1800", lugar: "Fraguas de Triana, Jerez y Cádiz",
         compas: ["libre", null, "Libre, a palo seco; para el baile toma el compás de la seguiriya"],
         texto: "La toná de los herreros gitanos. Se canta sin guitarra, a veces con el golpe del martillo sobre el yunque, y sus letras hablan de fragua, cárcel y persecución.",
+        mas: "Comparte copla y música con la toná; lo que cambia es el ambiente. El nombre viene del martillo de la fragua, y a veces el cantaor se acompaña golpeando el yunque. La carcelera es su variante de tema carcelario. Nadie lo había bailado hasta que Antonio lo hizo en 1952, sobre el compás de la seguiriya, en la película «Duende y misterio del flamenco».",
         refs: [
           { figura: "Manuel Agujetas", datos: "Jerez, 1939–2015",
             nota: "Hijo de Agujetas el Viejo y herrero antes que cantaor. Es el protagonista del primer documental de esta página.",
@@ -486,6 +546,7 @@ var ERAS = [
       { nombre: "Seguiriya", fecha: "c. 1800–1840", lugar: "Jerez, Los Puertos, Cádiz, Triana",
         compas: ["12", SEGUI, "12 tiempos · acentos en 1, 3, 5, 8 y 11"],
         texto: "El cante más trágico. Viene de las playeras, cantos de duelo; El Planeta y El Fillo ya las cantaban a mediados del XIX y Silverio las llevó a los cafés. Su compás reparte los doce tiempos en cinco golpes desiguales, dos cortos, dos largos y uno corto.",
+        mas: "La copla tiene cuatro versos: tres de seis sílabas y el tercero de once, que es donde el cante se rompe. Su compás es el de la soleá vuelto del revés, y con él se cantan también la liviana y la serrana. Suele rematarse con una cabal, una copla de cierre en tono mayor que alivia la tensión.",
         refs: [
           { figura: "Manuel Torre", datos: "Jerez, 1878–1933",
             nota: "Para muchos, el mejor seguiriyero de la historia. Lorca le dedicó las «Viñetas flamencas».",
@@ -501,6 +562,7 @@ var ERAS = [
       { nombre: "Caña y polo", fecha: "c. 1820–1850", lugar: "Ronda, Cádiz, Sevilla",
         compas: ["12", SOLEA, "12 tiempos · acentos en 3, 6, 8, 10 y 12"],
         texto: "Estébanez Calderón llamó a la caña «tronco primitivo» de los cantes andaluces. Caña y polo comparten el compás de la soleá y un largo lamento vocalizado entre copla y copla. Casi perdidos hacia 1900, volvieron con la antología de 1954.",
+        mas: "Son coplas de cuatro versos de ocho sílabas con un estribillo sin palabras: una escalera de «ayes» que sube y baja y que cualquier aficionado reconoce al instante. Se rematan con una soleá corta, la soleá apolá. El polo más conocido lleva el nombre de Tobalo, cantaor de Ronda de principios del XIX.",
         refs: [
           { figura: "Rafael Romero «El Gallina»", datos: "Andújar, 1910 – Madrid, 1991",
             nota: "La voz de aquella antología: su caña devolvió el palo al repertorio.",
@@ -516,6 +578,7 @@ var ERAS = [
       { nombre: "Soleá", fecha: "c. 1840–1860", lugar: "Triana, Alcalá, Utrera, Lebrija, Jerez, Cádiz",
         compas: ["12", SOLEA, "12 tiempos · acentos en 3, 6, 8, 10 y 12"],
         texto: "La madre del cante: de su compás derivan bulerías, alegrías, caña y polo. Nace en Triana como cante para bailar y cada comarca fija sus estilos: Alcalá con Joaquín el de la Paula, Utrera con La Serneta, Jerez con Frijones, Cádiz con El Mellizo.",
+        mas: "La copla es de tres o de cuatro versos de ocho sílabas, y la música va en el modo de mi, el de la «cadencia andaluza», que da su color a casi todo el flamenco. Hay decenas de estilos con nombre propio, clasificados por comarcas y por creadores. Cuando se acelera y se remata se convierte en soleá por bulerías, a medio camino de la fiesta.",
         refs: [
           { figura: "Fernanda de Utrera", datos: "Utrera, 1923–2006",
             nota: "Una voz corta y rota que hizo de la soleá un asunto personal, siempre junto a su hermana Bernarda.",
@@ -541,6 +604,7 @@ var ERAS = [
       { nombre: "Alegrías y cantiñas", fecha: "c. 1850–1870", lugar: "Cádiz y Los Puertos",
         compas: ["12", SOLEA, "12 tiempos, como la soleá, en modo mayor"],
         texto: "La soleá puesta en modo mayor y a ritmo de fiesta. La tradición las hace nacer de las jotas que cantaban los aragoneses en el Cádiz sitiado de 1810–1812. De la misma familia son romeras, mirabrás y caracoles.",
+        mas: "Son coplas de cuatro versos de ocho sílabas en tono mayor, con la salida más famosa del flamenco, el «tirititrán», que la tradición atribuye a Ignacio Espeleta. Para el baile tienen partes fijas: salida, letras, silencio, castellana, escobilla y remate por bulerías de Cádiz. «Cantiñas» es el nombre de toda la familia; las alegrías son su rama principal.",
         refs: [
           { figura: "La Perla de Cádiz", datos: "Antonia Gilabert, Cádiz, 1925–1975",
             nota: "La voz de los cantes de su ciudad y referencia declarada de Camarón.",
@@ -556,10 +620,12 @@ var ERAS = [
       { nombre: "Fandango", fecha: "s. XVIII · flamenco c. 1860–1900", lugar: "Toda Andalucía; sobre todo Málaga y Huelva",
         compas: ["ter", null, "Ternario (3/4)"],
         texto: "El gran árbol del cante andaluz. El fandango se baila en toda España desde el XVIII y cada comarca tiene el suyo. Al llegar a los cafés cantantes da dos ramas: los que conservan el compás de baile, como los verdiales y los de Huelva, y los que lo pierden y se vuelven cantes libres, como la malagueña, la granaína, la taranta y, ya en el siglo XX, el fandango natural.",
+        mas: "La copla es de cinco versos de ocho sílabas, que al cantarse se vuelven seis porque uno se repite. Lo más característico es el vaivén entre dos tonalidades: la guitarra toca sus variaciones en el modo flamenco y la copla se canta en tono mayor, para volver a caer al final.",
         sub: [
           { nombre: "Verdiales", lugar: "Montes de Málaga, Almogía, Comares y Vélez-Málaga",
             compas: ["ter", null, "Ternario (3/4), el ritmo «abandolao»"],
             texto: "Para muchos estudiosos, el fandango más antiguo de Andalucía. Lo tocan las pandas, con violín, guitarras, pandero y platillos, que se juntan cada 28 de diciembre en la Fiesta Mayor de Verdiales de Málaga. En voz de un cantaor solo se convierte en bandolá, rondeña o jabera, y de ahí sacó Juan Breva su malagueña.",
+            mas: "Cada panda lleva un alcalde que la dirige con una vara, y los fiesteros se cubren con sombreros cargados de flores, cintas y espejos. Hay tres estilos según la comarca, Montes, Almogía y Comares, que se distinguen por la velocidad y por los instrumentos; el de Comares añade laúd y bandurria.",
             refs: [
               { figura: "Juan Breva", datos: "Antonio Ortega, Vélez-Málaga, 1844 – Málaga, 1918", mia: true,
                 nota: "De joven destacó cantando verdiales y bandolás en las fiestas de su pueblo. Solo grabó una vez, en 1910, ya mayor y casi ciego, con la guitarra de Ramón Montoya.",
@@ -576,6 +642,7 @@ var ERAS = [
           { nombre: "Fandangos de Huelva", lugar: "Alosno, Huelva y su sierra",
             compas: ["ter", null, "Ternario (3/4)"],
             texto: "En Huelva cada pueblo conserva su fandango, de Alosno a Encinasola, y de ahí pasa al flamenco como cante corto, a compás y con aire de coro. Es el fandango que más se canta hoy.",
+            mas: "Se cuentan decenas de estilos: los de Alosno, que son varios, los de Encinasola, Almonaster, Santa Bárbara, Valverde, Calañas o Cabezas Rubias, y los personales de cantaores como Rebollo, Paco Isidro o Pérez de Guzmán. En Alosno se cantan en reunión, por turnos, y cada uno defiende el estilo de su casa.",
             refs: [
               { figura: "Paco Toronjo", datos: "Alosno, 1928–1998",
                 nota: "De Alosno, la cuna del fandango. Lo cantó toda la vida, primero a dúo con su hermano Pepe.",
@@ -593,6 +660,7 @@ var ERAS = [
       { nombre: "Malagueña", fecha: "c. 1860–1890", lugar: "Málaga y Cádiz",
         compas: ["libre", null, "Libre, sin compás"],
         texto: "El verdial de Málaga pierde el compás de baile y se vuelve cante libre, lento y lleno de melismas. Juan Breva la hizo famosa cuando todavía sonaba a fandango; Enrique el Mellizo, en Cádiz, y después Chacón le dieron la forma solemne de hoy.",
+        mas: "Usa la copla del fandango, cinco versos que se cantan como seis, y cada estilo lleva el nombre de quien lo creó: El Mellizo, Chacón, La Trini, El Canario, Fosforito el Viejo, Gayarrito, El Perote. La guitarra acompaña sin compás fijo, esperando a la voz. Muchas veces se remata con un cante abandolao, una rondeña o una jabera, que devuelve el ritmo.",
         refs: [
           { figura: "Antonio Chacón", datos: "Jerez, 1869–1929",
             nota: "Le llamaban don Antonio. Llevó los cantes libres a su cumbre.",
@@ -608,6 +676,7 @@ var ERAS = [
       { nombre: "Tangos y tientos", fecha: "c. 1860–1900", lugar: "Cádiz, Triana, Jerez; después Granada, Málaga y Extremadura",
         compas: ["bin", null, "Binario (4/4): ligero en los tangos, lento en los tientos"],
         texto: "El gran palo binario y de fiesta. Los tientos son su versión lenta y solemne, fijada hacia 1900 por Enrique el Mellizo, Manuel Torre y Chacón.",
+        mas: "Son coplas de tres o cuatro versos de ocho sílabas. Cada tierra tiene su tango: los de Cádiz, los de Triana, los de Granada, los de Málaga, con los de La Repompa y El Piyayo, y los extremeños de Badajoz. Los tientos, graves y solemnes, casi siempre se rematan acelerando hasta acabar por tangos.",
         aviso: ["¿Otro viaje de vuelta?", "Varios investigadores ven en el tango flamenco el tango americano que llegó de La Habana a Cádiz en el XIX. Otros, como Ricardo Molina y Antonio Mairena, lo tienen por cante gitano básico. La discusión sigue abierta."],
         refs: [
           { figura: "La Niña de los Peines", datos: "Pastora Pavón, Sevilla, 1890–1969",
@@ -624,6 +693,7 @@ var ERAS = [
       { nombre: "Bulerías", fecha: "c. 1880–1900", lugar: "Jerez de la Frontera",
         compas: ["12", SOLEA, "12 tiempos, como la soleá, muy rápido; se cuenta desde el 12"],
         texto: "Nace como remate rápido de la soleá y acaba siendo el palo de fiesta por excelencia: veloz, flexible, capaz de tragarse cualquier copla o canción. El primer impulso se atribuye al jerezano El Loco Mateo.",
+        mas: "Admite coplas de tres o cuatro versos, romances enteros y canciones de cualquier origen, que al pasar por su compás se llaman cuplés por bulerías. La de Jerez es corta y hecha para bailar; la de Utrera y Lebrija, más pausada; la de Cádiz se va al tono mayor. Es el cierre de toda fiesta: uno a uno, los artistas salen a darse una «pataíta».",
         refs: [
           { figura: "La Paquera de Jerez", datos: "Francisca Méndez, Jerez, 1934–2004",
             nota: "Voz de trueno del barrio de San Miguel: nadie ha cantado la bulería con más poderío.",
@@ -639,6 +709,7 @@ var ERAS = [
       { nombre: "Taranta y taranto", fecha: "c. 1880–1900", lugar: "Almería, Linares, La Unión",
         compas: ["libre", null, "Libre; el taranto, binario, es su versión bailable"],
         texto: "Los fandangos de Almería bajan a la mina. En las cuencas de Almería, Linares y Cartagena los mineros andaluces hacen cantes libres, de melodía áspera, con un toque de guitarra propio lleno de disonancias.",
+        mas: "Usan la copla del fandango y hablan de la mina: barrenos, galerías y capataces. La guitarra los acompaña en un tono propio, el de taranta, que suele atribuirse a Ramón Montoya. El taranto, ligado a Almería, es el mismo cante metido en compás binario para poder bailarlo; Carmen Amaya lo llevó al baile en los años cuarenta.",
         refs: [
           { figura: "Carmen Linares", datos: "Linares, 1951",
             nota: "Tomó el nombre de su pueblo minero y grabó en 1996 la antología «La mujer en el cante».",
@@ -654,6 +725,7 @@ var ERAS = [
       { nombre: "Minera y cartagenera", fecha: "c. 1890–1900", lugar: "La Unión y Cartagena",
         compas: ["libre", null, "Libre, sin compás"],
         texto: "Rojo el Alpargatero fijó la minera en los cafés de La Unión; la cartagenera, más cantable, la pulió Chacón. Desde 1961 el Festival del Cante de las Minas premia la mejor minera con la Lámpara Minera.",
+        mas: "Pertenecen a la familia de los cantes minero-levantinos, junto con la taranta, la levantica y la murciana, todos sobre la copla del fandango y sin compás. La Lámpara Minera se gana cantando por mineras, y por eso es el estilo que más se ha cuidado y estudiado en La Unión.",
         refs: [
           { figura: "Antonio Piñana", datos: "Cartagena, 1913–1989",
             nota: "Aprendió los estilos del hijo de Rojo el Alpargatero y ganó la primera edición del festival.",
@@ -669,6 +741,7 @@ var ERAS = [
       { nombre: "Granaína", fecha: "c. 1890–1905", lugar: "Granada",
         compas: ["libre", null, "Libre, sin compás"],
         texto: "Chacón toma el fandango de Granada y lo convierte en dos cantes libres de gran lucimiento, la granaína y la media granaína. Vallejo, Marchena y más tarde Morente las hicieron suyas.",
+        mas: "Usa la copla del fandango y un tono de guitarra propio, el de granaína, que le da un color inconfundible. Son cantes de lucimiento, de voz aguda y adornos largos. Con los nombres hay lío: lo que unos llaman granaína otros lo llaman media granaína, y los aficionados lo siguen discutiendo.",
         refs: [
           { figura: "Antonio Chacón", datos: "Jerez, 1869–1929",
             nota: "Creador de ambos estilos; aquí, en una de sus grabaciones restauradas.",
@@ -684,6 +757,7 @@ var ERAS = [
       { nombre: "Petenera", fecha: "c. 1880–1910", lugar: "Paterna de Rivera, según la tradición",
         compas: ["12", GUAJI, "12 tiempos · acentos en 1, 4, 7, 9 y 11"],
         texto: "Canción de moda en el último tercio del XIX que Medina el Viejo aflamencó y La Niña de los Peines hizo grande. La leyenda la atribuye a una cantaora de Paterna; su parentesco con la petenera mexicana se sigue discutiendo. Cante triste, con fama de traer mala suerte.",
+        mas: "La copla es una cuarteta de versos de ocho sílabas que se alarga al repetir versos y añadir una exclamación de relleno. Su compás es de amalgama, como el de la guajira: dos grupos de tres tiempos y tres de dos. Hay una petenera corta y otra larga; la larga es la que engrandeció Pastora.",
         refs: [
           { figura: "La Niña de los Peines", datos: "Pastora Pavón, Sevilla, 1890–1969",
             nota: "Sus peteneras son el modelo que siguen todas las demás.",
@@ -699,6 +773,7 @@ var ERAS = [
       { nombre: "Garrotín y farruca", fecha: "c. 1900–1910", lugar: "Del norte al sur: Asturias, Galicia, Cataluña",
         compas: ["bin", null, "Binario (4/4)"],
         texto: "Dos folclores del norte aflamencados a principios del XX. El garrotín se relaciona con Asturias y con los gitanos de Lleida y Valls; la farruca, de aire gallego, se convirtió en baile de hombre con Faíco y la guitarra de Ramón Montoya.",
+        mas: "El garrotín va en tono mayor, es alegre y lleva un estribillo pegadizo; se hizo popular como baile en los primeros años del siglo XX. La farruca, en tono menor y de aire melancólico, apenas se canta hoy: vive sobre todo en la guitarra y en el baile, sobrio y de mucho zapateado.",
         refs: [
           { figura: "Rafael Romero «El Gallina»", datos: "Andújar, 1910 – Madrid, 1991",
             nota: "El garrotín moderno también pasa por él: aquí lo canta para el baile.",
@@ -714,6 +789,7 @@ var ERAS = [
       { nombre: "Saeta flamenca", fecha: "c. 1900–1920", lugar: "Sevilla, Jerez, Málaga",
         compas: ["libre", null, "Libre, a palo seco, por seguiriyas o por martinetes"],
         texto: "La saeta era un canto llano de penitencia. A comienzos del XX se canta por seguiriyas y por martinetes, desde un balcón, al paso de las imágenes de Semana Santa. Manuel Centeno fijó el modelo; Manuel Torre, La Niña de la Alfalfa y Vallejo lo engrandecieron.",
+        mas: "La copla tiene cuatro o cinco versos de ocho sílabas y se dirige a la imagen: el paso se detiene mientras dura. Según la música sobre la que se cante, se habla de saeta por seguiriyas, por martinetes o por carceleras. En pueblos como Marchena, Puente Genil o Arcos de la Frontera se conservan saetas antiguas, anteriores a la flamenca.",
         refs: [
           { figura: "Manuel Centeno", datos: "Sevilla",
             nota: "Considerado uno de los mejores saeteros de todos los tiempos.",
@@ -740,6 +816,7 @@ var ERAS = [
       { nombre: "Guajira", fecha: "c. 1860–1900", lugar: "Cuba → Cádiz y Sevilla",
         compas: ["12", GUAJI, "12 tiempos · acentos en 1, 4, 7, 9 y 11"],
         texto: "Del punto guajiro de los campesinos cubanos: décimas de diez versos, modo mayor y un compás que alterna 6/8 y 3/4. Fue seguramente el primer cante de ida y vuelta, traído por soldados, marineros e indianos, con letras de La Habana, tabaco y cañaverales.",
+        mas: "Su estrofa es la décima, diez versos de ocho sílabas, la misma que improvisan los repentistas cubanos. Se canta despacio, en tono mayor, con la guitarra muy adornada, y se baila con bata de cola y abanico. Su compás, con dos grupos de tres tiempos y tres de dos, es el mismo de la petenera.",
         refs: [
           { figura: "Pepe Marchena", datos: "Marchena, 1903–1976",
             nota: "El gran divo de la ópera flamenca: voz dulce, falsete y un gusto declarado por todo lo que venía de América.",
@@ -755,6 +832,8 @@ var ERAS = [
       { nombre: "Rumba", fecha: "c. 1900–1915", lugar: "La Habana → Cádiz, Sevilla, Barcelona",
         compas: ["bin", null, "Binario (4/4)"],
         texto: "Hija de la guaracha del teatro musical de La Habana más que de la rumba cubana, entra por los espectáculos de variedades mezclada con los tangos. En los años cincuenta los gitanos de Barcelona le dan su rasgueo de «ventilador» y nace la rumba catalana.",
+        mas: "Es el palo más abierto de todos: admite cualquier letra y cualquier canción, y por eso ha sido la puerta de entrada del flamenco en la música popular, de Peret y Bambino a Los Chunguitos, Los Chichos o los Gipsy Kings. En la guitarra se reconoce por el rasgueo percutido, que hace a la vez de armonía y de tambor.",
+        aviso: ["Mención especial: la rumba catalana", "Nace a mediados del siglo XX entre los gitanos de Barcelona, en la calle de la Cera del Raval y en los barrios de Gràcia y Hostafrancs, al mezclar la rumba flamenca con la música cubana y el rock and roll. Su sello es el «ventilador», un rasgueo que golpea a la vez las cuerdas y la caja de la guitarra, y las palmas. El Pescaílla y Peret fueron los pioneros; después vinieron El Chacho, Los Amaya y Gato Pérez, y en 1992 Peret, Los Amaya y Los Manolos la cantaron ante medio mundo en la clausura de los Juegos Olímpicos de Barcelona.", [{ id: "0pyDglzUrbY", t: "Peret, Los Amaya y Los Manolos: Gitana hechicera", l: "«Gitana hechicera», clausura de Barcelona 92" }, { id: "b0jenna0FEc", t: "Gato Pérez: Rumba de Barcelona", l: "Gato Pérez, «Rumba de Barcelona»" }]],
         refs: [
           { figura: "Peret", datos: "Pere Pubill Calaf, Mataró, 1935–2014",
             nota: "Con El Pescaílla, el padre de la rumba catalana. La rumba instrumental más famosa, «Entre dos aguas», está en Fusiones.",
@@ -770,6 +849,7 @@ var ERAS = [
       { nombre: "Milonga", fecha: "c. 1890–1911", lugar: "Río de la Plata → Sevilla",
         compas: ["bin", null, "Binario, muchas veces cantado sin compás estricto"],
         texto: "La milonga rioplatense, canto de payadores. La cantaora Pepa de Oro la aprende de gira por América y la trae aflamencada; Escacena le da su primer gran éxito y en los años treinta llega al cine.",
+        mas: "Se canta en tono menor, con letras narrativas y sentimentales, y la guitarra la acompaña con un ritmo lento sobre el que el cantaor se toma muchas libertades. Fue uno de los cantes preferidos de la ópera flamenca, y la «Milonga de Juan Simón», la historia de un enterrador que da sepultura a su propia hija, llegó dos veces al cine.",
         refs: [
           { figura: "Angelillo", datos: "Ángel Sampedro, Madrid, 1908 – Buenos Aires, 1973",
             nota: "Estrella de la película «La hija de Juan Simón» (1935). Pasó en Argentina el exilio de la Guerra Civil y murió en Buenos Aires: su vida también cruzó el océano.",
@@ -785,6 +865,7 @@ var ERAS = [
       { nombre: "Vidalita", fecha: "c. 1910–1930", lugar: "Argentina y Uruguay → Andalucía",
         compas: ["libre", null, "Libre, o binario muy lento"],
         texto: "Canción melancólica del folclore argentino y uruguayo, tan cercana a la milonga que algunos no las distinguen. Se canta despacio y repite la palabra «vidalita» como estribillo. La popularizaron Pepe Marchena y Juan Valderrama.",
+        mas: "Versos cortos y música en tono menor, de aire triste y cadencioso, casi de canción de cuna. Es de los cantes de ida y vuelta que menos se oyen: se cantaba muy poco hasta que grabaciones como la de Mayte Martín la devolvieron a los escenarios.",
         refs: [
           { figura: "Mayte Martín", datos: "Barcelona, 1965",
             nota: "Su versión, adaptada de la de Valderrama, es la que hoy aprende todo el mundo.",
@@ -800,6 +881,7 @@ var ERAS = [
       { nombre: "Colombiana", fecha: "1931", lugar: "Inventada en España",
         compas: ["bin", null, "Binario (4/4), aire de tangos"],
         texto: "Uno de los pocos palos con fecha y autor: Pepe Marchena la estrena en 1931 con «Mi colombiana». De Colombia solo tiene el nombre; según la explicación más repetida, mezcla un corrido mexicano con un zortziko vasco. Un cante de ida y vuelta que nunca hizo el viaje.",
+        mas: "Va en tono mayor y con aire de rumba lenta. Sabicas y Carmen Amaya la convirtieron en pieza de guitarra y de baile, y Paco de Lucía compuso sobre ella «Monasterio de sal» en 1981. Es la prueba de que un palo puede inventarse en un estudio de grabación y quedarse.",
         refs: [
           { figura: "Pepe Marchena", datos: "Marchena, 1903–1976",
             nota: "Su creador. Después la grabaron de El Lebrijano a Morente.",
@@ -825,6 +907,7 @@ var ERAS = [
       { nombre: "Fandango natural", fecha: "c. 1920–1940", lugar: "Sevilla, Huelva, Madrid",
         compas: ["libre", null, "Libre, sin compás"],
         texto: "El fandango se suelta del compás de Huelva y cada cantaor crea el suyo: Vallejo, El Carbonerillo, El Gloria, Marchena, Caracol, Pepe Pinto. Es el cante estrella de la ópera flamenca, hecho para teatros llenos.",
+        mas: "Mantiene la copla de cinco versos, pero la guitarra ya no marca el compás: espera al cantaor y le responde entre verso y verso. Cada estilo se conoce por su creador, el de El Gloria, el de Vallejo, el de El Carbonerillo, el de Caracol, el de Cepero o el de Macandé, y por eso se llaman también fandangos personales.",
         refs: [
           { figura: "Manuel Vallejo", datos: "Sevilla, 1891–1960",
             nota: "Dominaba todos los palos, pero el público le pedía fandangos.",
@@ -843,6 +926,7 @@ var ERAS = [
       { nombre: "Zambra", fecha: "c. 1943–1950", lugar: "Sevilla y Madrid",
         compas: ["bin", null, "Binario (4/4), lento"],
         texto: "No es la zambra de las cuevas del Sacromonte, sino una canción teatral con orquesta que Manolo Caracol canta y Lola Flores baila en sus espectáculos de los años cuarenta, con letras de Quintero, León y Quiroga. A medio camino entre la copla y el cante.",
+        mas: "La otra zambra, la de las cuevas del Sacromonte, es una fiesta de los gitanos de Granada que representa una boda en tres bailes: la alboreá, la cachucha y la mosca. La de Caracol tomó de ella el nombre y el aire lento, y le puso orquesta, argumento y letras de autor, como «La Salvaora» o «La niña de fuego».",
         refs: [
           { figura: "Manolo Caracol", datos: "Sevilla, 1909–1973",
             nota: "De la saga de los Ortega. Ganó de niño el concurso de Granada y de adulto llevó el cante jondo al teatro con orquesta.",
@@ -856,19 +940,21 @@ var ERAS = [
         ],
         q: "zambra Manolo Caracol" },
       { nombre: "Bambera", fecha: "1949", lugar: "Sevilla",
-        compas: ["12", SOLEA, "Libre en origen; hoy, a compás de soleá por bulerías"],
-        texto: "Las bambas eran coplas que se cantaban al mecerse en el columpio en las fiestas de los pueblos andaluces. La Niña de los Peines las aflamenca y las graba en 1949; años después se les pone compás.",
+        compas: ["12", SOLEA, "Con aire de fandango en origen; desde 1970, a compás de soleá por bulerías"],
+        texto: "Las bambas eran coplas que se cantaban al mecerse en el columpio en las fiestas de los pueblos andaluces. La Niña de los Peines las aflamenca y las graba en 1949; veinte años después se les cambia el compás.",
+        mas: "La copla es una cuarteta, a veces con versos de siete y cinco sílabas como los de la seguidilla. Pastora la cantó con aire de fandango; hacia 1970 empezó a hacerse a compás de soleá, que es como se canta hoy. «La leyenda del tiempo», de Camarón, figura en el disco como «jaleos», pero hay quien la emparenta con la bambera.",
         refs: [
           { figura: "La Niña de los Peines", datos: "Pastora Pavón, Sevilla, 1890–1969",
             nota: "Con casi sesenta años todavía fue capaz de añadir un palo al repertorio.",
             ej: { id: "140Lusr5mdQ", t: "Entre sábanas de holanda", d: "bambera, con Melchor de Marchena" } },
           { figura: "Naranjito de Triana", datos: "José Sánchez Bernal, Sevilla, 1933–2002",
-            nota: "A él se le atribuye haberla metido en compás de soleá, como se canta hoy.",
+            nota: "De los primeros en cantarla a compás de soleá, como se hace hoy. El cambio se atribuye unas veces a él y otras a Fosforito, que la grabó así en 1970 con Paco de Lucía.",
             ej: { id: "aXQvQULYxck", t: "Homenaje a La Niña de los Peines", d: "aires de bamberas" } },
           { figura: "Enrique Morente", datos: "Granada, 1942 – Madrid, 2010",
             nota: "La bambera, ya a compás y rematada por tangos.",
             ej: { id: "A7VJJkfvI5I", t: "Bamberas y tangos", d: "Canal Sur, 1990" } }
         ],
+        otro: { id: "0usfxEYijXY", t: "Camarón: La leyenda del tiempo", l: "Compara: «La leyenda del tiempo», de Camarón («jaleos» en el disco)" },
         q: "bamberas cante flamenco" }
     ] },
 
@@ -898,6 +984,7 @@ var ERAS = [
       { nombre: "Canastera", fecha: "1972", lugar: "San Fernando y Algeciras",
         compas: ["ter", null, "Ternario (3/4), aire de fandango"],
         texto: "Camarón y Paco de Lucía crean un palo nuevo para abrir el disco «Canastera»: un fandango a compás con estribillo y armonía moderna. Es la prueba de que el repertorio no estaba cerrado.",
+        mas: "El nombre alude a los gitanos canasteros, los que vivían de hacer canastos e iban de un sitio a otro. Musicalmente es un fandango llevado a otro terreno: estribillo, cambios de tono y una guitarra que ya anuncia al Paco de Lucía de los años siguientes. Pocos cantaores la han grabado después.",
         refs: [
           { figura: "Camarón de la Isla", datos: "José Monje, San Fernando, 1950–1992", mia: true,
             nota: "Con él cambia la manera de cantar de todas las generaciones siguientes.",
@@ -913,6 +1000,24 @@ var ERAS = [
     ] }
 ];
 
+/* No es un palo flamenco: va aparte, con la misma forma que un palo. */
+var SEVILLANAS = { nombre: "Sevillanas", lugar: "Sevilla y toda Andalucía",
+  compas: ["ter", null, "Ternario (3/4), con el primer tiempo fuerte"],
+  texto: "No son un palo flamenco, sino un baile popular: las antiguas seguidillas sevillanas, hijas de la seguidilla castellana, que en Andalucía fueron tomando aire flamenco. Se cantan siempre en series de cuatro, cada una con su coreografía fija de pasadas y careos, y se bailan en pareja en la Feria de Abril, que se celebra desde 1847, en la romería del Rocío y en cualquier fiesta andaluza.",
+  mas: "La copla es una seguidilla, de versos de siete y cinco sílabas, con un estribillo de tres. Hay sevillanas de feria, rocieras, corraleras y bíblicas, y desde los años sesenta las han hecho populares en disco grupos como Los Romeros de la Puebla. Los flamencos también las cantan: en 1992 Carlos Saura reunió en la película «Sevillanas» a Camarón, Paco de Lucía, Manolo Sanlúcar, Lola Flores y Rocío Jurado.",
+  refs: [
+    { figura: "Los Romeros de la Puebla", datos: "La Puebla del Río, Sevilla",
+      nota: "El grupo de sevillanas más veterano e influyente, con los mismos componentes durante décadas.",
+      ej: { id: "4SGNmkIzWRI", t: "Sevillanas de Triana", d: "del disco «Haciendo historia por sevillanas»" } },
+    { figura: "El Pali", datos: "Francisco Palacios, Sevilla, 1928–1988",
+      nota: "El «trovador de Sevilla»: sevillanas de barrio, de corral y de humor, cantadas a la manera antigua.",
+      ej: { id: "GU0_wZ1755U", t: "Sevilla cogió el azul", d: "sevillanas, Bienal de Sevilla, 1986" } },
+    { figura: "Camarón de la Isla", datos: "José Monje, San Fernando, 1950–1992", mia: true,
+      nota: "También los flamencos cantan sevillanas. Estas las preparó para la película de Saura, con Tomatito a la guitarra.",
+      ej: { id: "xQhqc8JMoXc", t: "Pa qué me llamas, prima", d: "ensayo para la película «Sevillanas», 1992" } }
+  ],
+  q: "sevillanas clásicas" };
+
 var FUSIONES = [
   { col: 0, nombre: "Con el jazz", texto: "Primero fue el jazz el que miró al flamenco. Después Paco de Lucía aprendió a improvisar con sus acordes y ya no hubo vuelta atrás.",
     items: [
@@ -920,6 +1025,7 @@ var FUSIONES = [
       ["1967", "Bulerías", "Pedro Iturralde Quintet con Paco de Lucía", "Del disco «Jazz Flamenco», grabado en Madrid el 14 de septiembre de 1967. Un saxofonista navarro y un guitarrista de 19 años firman el acta de nacimiento del flamenco-jazz.", "M5I65LODdfI"],
       ["1973", "Entre dos aguas", "Paco de Lucía", "Una rumba improvisada al final de la grabación de «Fuente y caudal», con bajo eléctrico y bongos. Fue número uno y la puerta de entrada del gran público.", "2oyhlad64-s"],
       ["1981", "Mediterranean Sundance / Río Ancho", "Al Di Meola, John McLaughlin y Paco de Lucía", "Del disco «Friday Night in San Francisco», grabado en directo el 5 de diciembre de 1980. Tres guitarras acústicas a una velocidad que nadie había oído.", "OYDxM5OjmZI"],
+      ["1993", "Que no quiero dinero", "Jorge Pardo con El Potito", "Del disco «Veloz». Nueve minutos de tangos con el saxo y la flauta de Jorge Pardo, la voz de un Potito adolescente, la guitarra de Agustín Carbonell «Bola» y el bajo de Carles Benavent: los músicos que venían de tocar con Paco de Lucía haciendo su propio flamenco-jazz.", "WdfhAKo3y6c"],
       ["1996", "Bulerías al piano", "Chano Domínguez", "Un pianista gaditano de jazz que toca con compás flamenco. En 2012 devolvió la visita a Miles Davis con su propio «Flamenco Sketches».", "bHE_H_6DKm8"],
       ["2003", "Lágrimas negras", "Bebo Valdés y Diego el Cigala", "Un pianista cubano de 84 años y un cantaor madrileño cantan boleros y sones por derecho. Otro viaje de ida y vuelta, un siglo después.", "Bnc7Bz57CME"]
     ] },
@@ -975,6 +1081,68 @@ var BAILE = { nombre: "Bailaores y bailaoras", busca: "baile flamenco",
   ] };
 
 /* Enlaces de documentación: [nombre, dirección, de quién es, qué hay]. */
+var PROMESAS = { nombre: "Nuevas promesas", busca: "flamenco",
+  texto: "Nacidos casi todos a partir de 1995. Unos ya llenan teatros y otros están empezando, pero por aquí pasa el flamenco de los próximos años.",
+  gente: [
+    ["Israel Fernández", "Corral de Almaguer (Toledo), 1989", "El mayor de la lista, y más realidad que promesa: cante gitano clásico con un público joven detrás. Su pareja artística con el guitarrista Diego del Morao es de las más celebradas de hoy.", "_beTSSxy2-o", "El anhelo", "bulerías, Conciertos de Radio 3, 2021"],
+    ["María Terremoto", "María Fernández, Jerez, 1999", "Hija de Fernando Terremoto y nieta de Terremoto de Jerez: una de las grandes casas cantaoras. Tras «La huella de mi sentío» (2018) publicó «Manifiesto» en 2025.", "4sEwogXClIQ", "Bulerías", "Canal Sur, 2021"],
+    ["Ángeles Toledano", "Villanueva de la Reina (Jaén), 1995", "Cantaora que debutó en 2024 con «Sangre sucia», un disco donde el cante convive con samplers y batería.", "pHFqw5WLsks", "Eres guapa", "taranta, TVE, 2024"],
+    ["Esmeralda Rancapino", "Esmeralda Torres, Chiclana", "Nieta de Rancapino, el amigo de niñez de Camarón. Publicó su primera canción en 2021 y en 2026 estuvo en el cartel de Suma Flamenca Joven.", "j3RYdfb5xo8", "Tangos", "con Antonio Higuero, Jerez, 2023"],
+    ["Yerai Cortés", "Alicante, 1995", "Guitarrista. C. Tangana dirigió sobre él «La guitarra flamenca de Yerai Cortés» (2024), que ganó dos Goya: mejor documental y mejor canción, por «Los almendros».", "fdcOpuAY8pg", "Por tu silencio lloro y Los almendros", "con La Tania, TVE"],
+    ["José del Tomate", "José Fernández, Almería, 1998", "Hijo de Tomatito y nieto de El Tomate: tercera generación de una casa de guitarristas. Debutó en 2018 con el disco «Plaza Vieja».", "Zh6WL16NXTU", "Plaza Vieja", "Canal Sur"],
+    ["El Yiyo", "Miguel Fernández, Badalona, 1996", "Bailaor, de los de más proyección de su generación. Con once años ya había hecho su primera gira internacional.", "KTefXXD1pUI", "En Suma Flamenca Joven", "Teatros del Canal, Madrid, 2021"]
+  ] };
+
+var GRUPOS = { nombre: "Nacidos del flamenco", busca: "",
+  texto: "No son flamenco en sentido estricto, pero salen de él: de sus familias, de sus barrios y de su rumba. Y llegaron a un público que el flamenco nunca había tenido.",
+  gente: [
+    ["Los Chichos", "Madrid, 1973", "Rumba de barrio con letras de cárcel y desamor: la música de una España que no salía en televisión. «Quiero ser libre» fue su primer éxito.", "_1XJQjTunZY", "Quiero ser libre", "del disco «Ni más, ni menos», 1974"],
+    ["Los Chunguitos", "de Badajoz a Vallecas, 1973", "Los hermanos Salazar, sobrinos del cantaor Porrina de Badajoz. «Me quedo contigo» sonó en «Deprisa, deprisa», de Carlos Saura, y Rosalía la cantó en los Goya de 2019.", "DeFYqBa8xao", "Me quedo contigo", "1980"],
+    ["Gipsy Kings", "Arlés y Montpellier, Francia", "Las familias Reyes y Baliardo, gitanos de origen catalán del sur de Francia, llevaron la rumba catalana a medio mundo cantando en español. «Bamboléo» y «Djobi, Djoba» son de 1987.", "w-isTDv6hq0", "Bamboléo", "1987"],
+    ["Azúcar Moreno", "Toñi y Encarna Salazar", "Hermanas de Los Chunguitos, a los que hacían los coros. Mezclaron rumba y música de baile, y con «Bandido» quedaron quintas en Eurovisión en 1990.", "G4UFkRdibyQ", "Bandido", "Canal Sur, 1991"],
+    ["Ketama", "Madrid, años ochenta", "Los Carmona, de la casa de los Habichuela, con salsa, pop y funk. Ya estaban en las fusiones con «Songhai»; «De akí a Ketama» (1995) los convirtió en un fenómeno de ventas.", "rVIY62qc5t0", "No estamos lokos", "1995"],
+    ["Estopa", "Cornellà de Llobregat, 1999", "David y José Muñoz, hijos de extremeños criados en el extrarradio de Barcelona: rumba, rock y humor. Su primer disco pasó del millón de copias, y su canción más querida se titula «Como Camarón».", "JmP89cIGJZM", "Como Camarón", "1999"],
+    ["C. Tangana", "Madrid, 1990", "Un rapero que en «El Madrileño» se rodeó de flamencos y rumberos. «Tú me dejaste de querer», con Niño de Elche y La Húngara, batió récords de escuchas en España.", "ltmO9XQVdSg", "Tú me dejaste de querer", "2020"]
+  ] };
+
+var CINE = [
+  { col: 0, nombre: "Hollywood mira al flamenco", texto: "Casi siempre como decorado exótico; de vez en cuando, con la cámara quieta delante de quien sabía.",
+    items: [
+      ["1941", "Original Gypsy Dances", "Carmen Amaya y Sabicas", "Un corto rodado en Hollywood para presentar a la bailaora al público de Estados Unidos. Aquí, las alegrías. En 1944 bailó también en «Knickerbocker Holiday» y «Follow the Boys».", "LToBHmnN2L8"],
+      ["1956", "La vuelta al mundo en 80 días", "José Greco", "La parada española de la película que ganó el Óscar. Baila José Greco, nacido en Italia y criado en Nueva York: el hombre que puso de moda el baile español en Estados Unidos.", "wL2fRBv4GxY"],
+      ["1957", "Orgullo y pasión", "Sophia Loren", "Stanley Kramer rodó en España, con Cary Grant y Frank Sinatra, y dio a Sophia Loren una escena de baile flamenco. Más Hollywood que tablao, pero de las más recordadas.", "FY7fjvsltcw"],
+      ["1997", "Pactar con el diablo", "Tomatito y El Potito, con Al Pacino", "Taylor Hackford lleva al diablo de Al Pacino a una noche de flamenco. Los que tocan y cantan son Tomatito y El Potito, el mismo que canta con Jorge Pardo en las fusiones, y Pacino acaba metiéndose en el baile.", "GQ6Derst4s0"],
+      ["2000", "Misión imposible 2", "La Sevilla de John Woo", "Los protagonistas se conocen en una fiesta sevillana con baile flamenco y una guitarra escrita por Hans Zimmer que toca Heitor Pereira. La ciudad sale mezclada con unas Fallas que no son suyas.", "gwiM-gd5cCs"],
+      ["2004", "Kill Bill. Volumen 2", "Lole y Manuel", "Tarantino pone «Tu mirá», de 1975, en el último capítulo, cuando la Novia visita a Esteban Vihaio para dar con Bill. Flamenco sin retocar en una superproducción. El vídeo es el audio del disco de la película.", "YWSrCkyMsnc"],
+      ["2009", "Los límites del control", "La Truco y Talegón de Córdoba", "Jim Jarmusch deja la cámara quieta ante una petenera entera, «El que se tenga por grande», en un ensayo en Sevilla. De lo mejor que ha filmado del flamenco un director estadounidense.", "NU9c_G5cL78"],
+      ["2010", "Toy Story 3", "Gipsy Kings", "A Buzz Lightyear se le activa el modo español y baila con Jessie la versión de «Hay un amigo en mí» que grabaron los Gipsy Kings. El flamenco como broma, y la prueba de hasta dónde llegó aquella rumba.", "eVRghsitMV0"]
+    ] },
+  { col: 1, nombre: "Cante y baile de verdad en la pantalla", texto: "Del cine español de posguerra a Almodóvar: películas en las que lo que suena es flamenco de calidad.",
+    items: [
+      ["1947", "Embrujo", "Lola Flores y Manolo Caracol", "La pareja que llenaba los teatros con sus zambras, llevada al cine por Carlos Serrano de Osma. Caracol canta «La niña de fuego» y «La Salvaora»; Lola baila y recita.", "h49I036fQ40"],
+      ["1952", "Duende y misterio del flamenco", "Antonio", "Edgar Neville recorre los palos uno por uno, cada cual en su paisaje. Lo más célebre es el martinete que Antonio baila ante el Tajo de Ronda: hasta entonces era un cante que no se bailaba.", "mY5rW3l4OY4"],
+      ["1963", "Los Tarantos", "Carmen Amaya", "Romeo y Julieta entre los gitanos de Barcelona, dirigida por Rovira Beleta y candidata al Óscar. Fue la última película de Carmen Amaya, que murió ese mismo año. Con ella, un joven Antonio Gades.", "EwVODokMJYo"],
+      ["1983", "Carmen", "Antonio Gades, Cristina Hoyos y Paco de Lucía", "Carlos Saura cuenta el ensayo de un ballet flamenco sobre «Carmen», y la ficción se cuela en la vida. La escena de la tabacalera, a puro compás de palmas y pies, es historia del cine. También fue candidata al Óscar.", "795oXwmylqY"],
+      ["1995", "Flamenco", "Carlos Saura", "Sin argumento: un desfile de cantes, toques y bailes filmados en la antigua estación de Plaza de Armas de Sevilla, con la luz de Vittorio Storaro. Aquí, las bulerías de Belén Maya.", "52DjtvUPHxE"],
+      ["2000", "Vengo", "La Caita, con Antonio Canales", "Tony Gatlif rodó en Andalucía una historia de venganzas con flamencos de verdad delante de la cámara. La Caita canta «Calle del aire» sin más artificio que su voz.", "pfRBfHBJfow"],
+      ["2006", "Volver", "Estrella Morente y Penélope Cruz", "Almodóvar convierte el tango de Gardel en cante flamenco. En la pantalla canta Penélope Cruz; la voz que se oye es la de Estrella Morente.", "3EVCFS85GUw"],
+      ["2019", "Dolor y gloria", "Rosalía y Penélope Cruz", "Otra vez Almodóvar: las mujeres lavan la ropa en el río y cantan «A tu vera». Rosalía, en su primer papel en el cine, lleva la voz.", "mrOFpBFZV7c"]
+    ] }
+];
+
+var ARCHIVO = [
+  ["h. 1900", "Se murió mi esperanza", "El Mochuelo · serranas", "Cilindro de cera. Antonio Pozo «El Mochuelo» fue de los primeros cantaores que grabaron y de los que más lo hicieron: en 1901 ya se escribía que su voz era la que mejor recogía el fonógrafo. Guitarra de Manuel López.", "_pJHBEx5pkQ"],
+  ["h. 1900", "Dime que me quieres mucho", "Reina · guajiras", "Cilindro de cera. Una guajira, el cante de ida y vuelta que estaba de moda, por un cantaor que en la reedición figura solo como «Reina».", "ZGx3GXAS2OE"],
+  ["h. 1900", "Quién te ha puesto esos labios rojos", "Manuel «el Sevillano» · tangos", "Cilindro de cera. Tangos de un cantaor que solía acompañarse él mismo a la guitarra.", "xBJXGyGQFKw"],
+  ["1904–22", "A mí me pueden mandar", "El Mochuelo · jabera", "Ya en disco. La reedición fecha sus placas y las de Manuel Escacena entre 1904 y 1922. La jabera es un fandango malagueño, pariente del verdial.", "rrZ1PWovtOY"],
+  ["1908–09", "Tango", "Antonio Chacón, con Juan Gandulla «Habichuela»", "De la primera tanda de discos de Chacón, para la casa Odeón. Unas fichas la fechan en 1908 y otras en 1909.", "93SJyUMDlwQ"],
+  ["1909", "Si yo supiera la lengua", "Antonio Chacón · siguiriyas", "De las mismas sesiones con Habichuela: el maestro de las malagueñas, cantando por siguiriyas.", "61aRLfUrZbk"],
+  ["h. 1909", "A clavito y canela", "Manuel Torre · seguiriya", "Manuel Torre empezó a grabar en 1909. Es la voz en la que pensaba Lorca cuando hablaba del duende.", "Su4qXRGhnPY"],
+  ["1910", "Mi madre me llevará", "Juan Breva · fandangos de Vélez", "Juan Breva solo grabó una vez, con 66 años y casi ciego, acompañado por Ramón Montoya. Es la única manera de oír al cantaor más famoso del siglo XIX.", "_vpSTMTOejE"],
+  ["1910", "Se siembra y vuelve a nacer", "Juan Breva · malagueñas", "De la misma sesión: la malagueña de Breva, todavía con aire de verdial.", "64ujuD_9IjM"],
+  ["1910", "Sevillanas", "La Niña de los Peines, con Ramón Montoya", "Pastora Pavón tenía veinte años cuando grabó sus primeros discos, para Zonophone. Entre ellos, estas sevillanas.", "GJjTK25uoB4"]
+];
+
 var RECURSOS = [
   { col: 0, nombre: "Archivos e instituciones", texto: "Donde se guarda y se estudia el flamenco.",
     items: [
@@ -982,36 +1150,46 @@ var RECURSOS = [
       ["Instituto Andaluz del Flamenco", "https://www.juntadeandalucia.es/aaiicc/flamenco/", "Junta de Andalucía · Sevilla", "Agenda, peñas, festivales, exposiciones virtuales, efemérides y la revista «La Nueva Alboreá»."],
       ["El flamenco en la lista de la Unesco", "https://ich.unesco.org/es/RL/el-flamenco-00363", "Unesco", "La ficha de la inscripción de 2010 como Patrimonio Cultural Inmaterial de la Humanidad, con su vídeo y sus documentos."],
       ["Flamenco en la Biblioteca Nacional", "https://www.bne.es/es/blog/blog-bne/flamenco-patrimonio-humanidad-iniciacion-musica-sin-fronteras", "Biblioteca Nacional de España", "Guía de sus fondos, con enlaces a las grabaciones de cada palo en el catálogo."],
-      ["Discos de pizarra para escuchar", "https://blog.bne.es/blog/escucha-la-musica-de-una-generacion-un-antidoto-contra-el-desanimo/", "Biblioteca Digital Hispánica", "Cómo oír gratis las grabaciones históricas digitalizadas: listas de flamenco con La Niña de los Peines, Antonio Mairena, Niño Ricardo o Sabicas."],
+      ["Discos de pizarra para escuchar", "https://www.bne.es/es/blog/blog-bne/escucha-la-musica-de-una-generacion-un-antidoto-contra-el-desanimo", "Biblioteca Digital Hispánica", "Cómo oír gratis las grabaciones históricas digitalizadas: listas de flamenco con La Niña de los Peines, Antonio Mairena, Niño Ricardo o Sabicas."],
       ["Museo del Baile Flamenco", "https://museodelbaileflamenco.com/", "Sevilla", "El museo que fundó Cristina Hoyos en 2006, en el barrio de Santa Cruz."]
     ] },
   { col: 0, nombre: "Radio y televisión", texto: "Archivos que se pueden ver y oír completos.",
     items: [
-      ["Rito y geografía del cante", "https://www.rtve.es/alacarta/videos-audios/rito-y-geografia-del-cante/", "RTVE", "La serie de 1971–1973 en el archivo de RTVE."],
+      ["Rito y geografía del cante", "https://www.rtve.es/play/videos/rito-y-geografia-del-cante/", "RTVE Play", "La serie documental de 1971–1973, capítulo a capítulo, en el archivo de RTVE."],
       ["Nuestro flamenco", "https://www.rtve.es/play/audios/nuestro-flamenco/", "Radio Clásica, RNE", "El programa de José María Velázquez-Gaztelu, en antena desde 1984, con sus emisiones a la carta."],
-      ["FlamencoRadio", "https://www.canalsur.es/radio/flamencoradio-1313.html", "Canal Sur", "La emisora por internet de la radio pública andaluza: flamenco las veinticuatro horas."]
+      ["FlamencoRadio", "https://www.canalsur.es/radio/flamenco-radio/", "Canal Sur", "La emisora por internet de la radio pública andaluza: flamenco las veinticuatro horas."]
     ] },
   { col: 1, nombre: "Para entender los palos", texto: "Compás, historia y árbol de los cantes, explicados.",
     items: [
-      ["Flamencopolis", "https://www.flamencopolis.com/", "Faustino Núñez", "La web del musicólogo: cada palo de la A a la Z con su ritmo, su armonía y su historia, y un apartado de antecedentes."],
-      ["Geografía del flamenco", "https://flamencoenred.uca.es/xii-edicion-flamenco-en-red-faustino-nunez-geografia-del-flamenco/", "Flamenco en Red · Universidad de Cádiz", "Serie de monográficos sobre la historia del flamenco provincia a provincia."],
+      ["Flamencopolis", "https://expoflamenco.com/flamencopolis/", "Faustino Núñez · en ExpoFlamenco", "La web del musicólogo, ahora alojada en ExpoFlamenco: cada palo de la A a la Z, con apartados de ritmo, compás, armonía e historia, y otro de antecedentes."],
+      ["Geografía del flamenco", "https://flamencoenred.uca.es/xii-edicion-flamenco-en-red-faustino-nunez-geografia-del-flamenco/", "Flamenco en Red · Universidad de Cádiz", "Cinco clases en vídeo de Faustino Núñez sobre la historia del flamenco, territorio a territorio."],
       ["Flamenco", "https://es.wikipedia.org/wiki/Flamenco", "Wikipedia", "Buen punto de partida, con la historia por etapas y la clasificación de los palos."],
       ["Cantes de ida y vuelta", "https://es.wikipedia.org/wiki/Cantes_de_ida_y_vuelta", "Wikipedia", "El artículo sobre la guajira, la milonga, la vidalita, la rumba y la colombiana."],
       ["Palos del flamenco", "https://es.wikipedia.org/wiki/Categor%C3%ADa:Palos_del_flamenco", "Wikipedia", "La lista de artículos, palo por palo."]
     ] },
-  { col: 1, nombre: "Revistas y textos", texto: "Para seguir la actualidad y para leer las fuentes.",
+  { col: 0, nombre: "Revistas y textos", texto: "Para seguir la actualidad y para leer las fuentes.",
     items: [
       ["ExpoFlamenco", "https://expoflamenco.com/", "Revista", "Actualidad, crónicas, entrevistas y firmas de investigadores."],
       ["DeFlamenco", "https://www.deflamenco.com/", "Revista", "Noticias, reseñas de discos y espectáculos, y especiales de los grandes festivales."],
       ["La Madrugá", "https://revistas.um.es/flamenco", "Universidad de Murcia", "Revista de investigación sobre flamenco, de acceso abierto."],
-      ["Revista de Flamencología", "http://revistadeflamencologia.es", "Cátedra de Flamencología de Jerez", "La revista de la cátedra fundada en 1958."],
+      ["Revista de Flamencología", "https://canalflamenco.es/revistadeflamencologia/", "Cátedra de Flamencología de Jerez", "La revista de la cátedra fundada en 1958."],
       ["«Colección de cantes flamencos», de Demófilo", "https://archive.org/details/coleccion-de-cantes-flamencos-demofilo", "Internet Archive", "Los cantes que recogió Antonio Machado y Álvarez, padre de los poetas: el punto de partida de los estudios sobre flamenco."],
-      ["Archivo de Ángel Álvarez Caballero", "https://archive.org/details/ANGEL_ALVAREZ_CABALLERO-archivo_digital", "Internet Archive", "Artículos digitalizados del crítico e historiador del cante."]
+      ["Archivo de Ángel Álvarez Caballero", "https://archive.org/details/ANGEL_ALVAREZ_CABALLERO-archivo_digital", "Internet Archive", "Los artículos del crítico e historiador del cante, de 1968 a 2015, con su bibliografía y sus cursos."]
     ] },
-  { col: 0, nombre: "Festivales", texto: "Las dos grandes citas, con su historia y sus programas.",
+  { col: 1, nombre: "Festivales", texto: "Las grandes citas del año, dentro y fuera de Andalucía.",
     items: [
       ["Bienal de Flamenco de Sevilla", "https://www.labienal.com/", "Sevilla · años pares, desde 1980", "La gran cita mundial del flamenco, cada dos años entre septiembre y octubre."],
-      ["Festival Internacional del Cante de las Minas", "https://www.festivalcantedelasminas.org/", "La Unión · cada agosto, desde 1961", "El concurso de la Lámpara Minera."]
+      ["Festival de Jerez", "https://www.festivaldejerez.es/", "Jerez · febrero y marzo", "Dedicado al baile flamenco y a la danza española, con cursos a los que llegan alumnos de medio mundo."],
+      ["Festival Internacional del Cante de las Minas", "https://www.festivalcantedelasminas.org/", "La Unión · entre julio y agosto, desde 1961", "El concurso de la Lámpara Minera."],
+      ["Concurso Nacional de Arte Flamenco", "https://teatrocordoba.es/cnaf/", "Córdoba · cada tres años, desde 1956", "El «concurso de concursos», el más antiguo y con más peso; en su primera edición lo ganó Fosforito. La última, la XXIV, fue en noviembre de 2025."],
+      ["Festival de la Guitarra de Córdoba", "https://www.guitarracordoba.es/", "Córdoba · julio", "Conciertos y cursos de guitarra de todos los estilos, con mucho flamenco."],
+      ["Potaje Gitano de Utrera", "http://www.potajegitano.com/", "Utrera · último sábado de junio, desde 1957", "El festival flamenco más antiguo; lo organiza la Hermandad de los Gitanos y cada año rinde homenaje a una figura."],
+      ["Festivales de la provincia de Sevilla", "https://andalucia.org/en/major-flamenco-festivals-in-the-province-of-seville", "Andalucía.org · en inglés", "Guía de los festivales de verano de los pueblos sevillanos: el Potaje de Utrera, el Antonio Mairena de Mairena del Alcor, el Gazpacho de Morón y la Caracolá de Lebrija."],
+      ["Suma Flamenca", "https://www.madrid.org/sumaflamenca", "Comunidad de Madrid · octubre, desde 2006", "El festival flamenco de Madrid, con los Teatros del Canal como sede principal."],
+      ["Flamenco On Fire", "https://www.flamencoonfire.com/", "Pamplona · agosto, desde 2014", "Dedicado a la memoria de Sabicas, con conciertos en teatros, patios y balcones."],
+      ["Festival Flamenco de Nîmes", "https://theatredenimes.com/festival-flamenco", "Nîmes, Francia · enero, desde 1991", "El primer gran festival del año, organizado por el Théâtre de Nîmes."],
+      ["Arte Flamenco", "https://festivalarteflamenco.fr/", "Mont-de-Marsan, Francia · principios de julio, desde 1989", "El mayor festival de flamenco fuera de España."],
+      ["Flamenco Festival", "https://flamencofestival.org/", "Nueva York y Londres", "Lleva cada año a las compañías españolas al City Center de Nueva York y al Sadler's Wells de Londres."]
     ] }
 ];
 
@@ -1039,16 +1217,19 @@ var puedeIncrustar = !enVisor && !enDisco;
 
 /* ═══════════════════════ Pintar ═══════════════════════ */
 
+function tarjeta(d, grande) {
+  var k = reg(d.id, d.titulo, d.meta);
+  var img = enVisor ? "" : '<img class="poster__img" alt="" loading="lazy" src="https://i.ytimg.com/vi/' + d.id + '/hqdefault.jpg">';
+  return '<li class="doc' + (grande ? " doc--lead" : "") + '"><button type="button" class="doc__btn" data-v="' + k + '">' +
+    '<span class="poster">' + img + '<span class="poster__tag">' + esc(d.sello) + '</span><span class="poster__play">' + PLAY + '</span></span>' +
+    '<span class="doc__title">' + esc(d.titulo) + '</span>' +
+    '<span class="doc__meta">' + esc(d.meta) + '</span>' +
+    '<span class="doc__text">' + esc(d.texto) + '</span></button></li>';
+}
+
 function pintarDocs() {
-  var h = DOCUMENTALES.map(function (d, i) {
-    var k = reg(d.id, d.titulo, d.meta);
-    var img = enVisor ? "" : '<img class="poster__img" alt="" loading="lazy" src="https://i.ytimg.com/vi/' + d.id + '/hqdefault.jpg">';
-    return '<li class="doc' + (i < 2 ? " doc--lead" : "") + '"><button type="button" class="doc__btn" data-v="' + k + '">' +
-      '<span class="poster">' + img + '<span class="poster__tag">' + esc(d.sello) + '</span><span class="poster__play">' + PLAY + '</span></span>' +
-      '<span class="doc__title">' + esc(d.titulo) + '</span>' +
-      '<span class="doc__meta">' + esc(d.meta) + '</span>' +
-      '<span class="doc__text">' + esc(d.texto) + '</span></button></li>';
-  }).join("");
+  var h = DOCUMENTALES.map(function (d, i) { return tarjeta(d, i < 2); }).join("");
+  $("#conciertos").innerHTML = CONCIERTOS.map(function (d) { return tarjeta(d, false); }).join("");
   h += '<li class="doc"><a class="doc__more" href="' + SERIE_COMPLETA.url + '" target="_blank" rel="noopener"><b>' + esc(SERIE_COMPLETA.titulo) + '</b><span>' + esc(SERIE_COMPLETA.texto) + '</span></a></li>';
   $("#docs").innerHTML = h;
   Array.prototype.forEach.call(document.querySelectorAll(".poster__img"), function (im) {
@@ -1096,8 +1277,16 @@ function extras(p) {
 }
 
 function cuerpo(p) {
-  var aviso = p.aviso ? '<p class="palo__aside"><b>' + esc(p.aviso[0]) + '</b>' + esc(p.aviso[1]) + '</p>' : "";
-  return '<p class="palo__place">' + esc(p.lugar) + '</p>' + compas(p.compas) + '<p class="palo__text">' + esc(p.texto) + '</p>' + aviso + referencias(p) + extras(p);
+  var aviso = "";
+  if (p.aviso) {
+    var vids = (p.aviso[2] || []).map(function (v) {
+      var k = reg(v.id, v.t, "");
+      return '<button type="button" class="linkplay" data-v="' + k + '">' + PLAY + esc(v.l) + '</button>';
+    }).join("");
+    aviso = '<div class="palo__aside"><b>' + esc(p.aviso[0]) + '</b><p>' + esc(p.aviso[1]) + '</p>' + (vids ? '<p class="palo__aside-links">' + vids + '</p>' : "") + '</div>';
+  }
+  var mas = p.mas ? '<p class="palo__text palo__mas">' + esc(p.mas) + '</p>' : "";
+  return '<p class="palo__place">' + esc(p.lugar) + '</p>' + compas(p.compas) + '<p class="palo__text">' + esc(p.texto) + '</p>' + mas + aviso + referencias(p) + extras(p);
 }
 
 function pintarPalo(p) {
@@ -1127,29 +1316,38 @@ function pintarEra(e) {
     (e.palos.length ? '<ol class="tl">' + e.palos.map(pintarPalo).join("") + '</ol>' : "") + '</div></section>';
 }
 
-function pintarFusiones() {
-  var cols = ["", ""];
-  FUSIONES.forEach(function (g) {
-    cols[g.col] += '<section class="fx-group"><h3>' + esc(g.nombre) + '</h3><p>' + esc(g.texto) + '</p><ol class="fx-list">' +
-      g.items.map(function (it) {
-        var k = reg(it[4], it[1], it[2] + " · " + it[0]);
-        return '<li class="fx"><span class="fx__year">' + esc(it[0]) + '</span><div><p class="fx__title">' + esc(it[1]) + ' <span>· ' + esc(it[2]) + '</span></p><p class="fx__note">' + esc(it[3]) + '</p></div>' +
-          '<div class="listen"><button type="button" class="play play--sm" data-v="' + k + '"><span class="play__ic">' + PLAY + '</span><span>Escuchar</span></button>' +
-          '<a class="out" href="' + yt(it[4]) + '" target="_blank" rel="noopener">YouTube ↗</a></div></li>';
-      }).join("") + '</ol></section>';
-  });
-  $("#fx").innerHTML = "<div>" + cols[0] + "</div><div>" + cols[1] + "</div>";
+function itemFx(it, verbo) {
+    var k = reg(it[4], it[1], it[2] + " · " + it[0]);
+    return '<li class="fx"><span class="fx__year">' + esc(it[0]) + '</span><div><p class="fx__title">' + esc(it[1]) + ' <span>· ' + esc(it[2]) + '</span></p><p class="fx__note">' + esc(it[3]) + '</p></div>' +
+      '<div class="listen"><button type="button" class="play play--sm" data-v="' + k + '"><span class="play__ic">' + PLAY + '</span><span>' + (verbo || "Escuchar") + '</span></button>' +
+      '<a class="out" href="' + yt(it[4]) + '" target="_blank" rel="noopener">YouTube ↗</a></div></li>';
 }
 
-function pintarGente() {
-  $("#gente").innerHTML = [TOQUE, BAILE].map(function (g) {
+function pintarFx(lista, destino, verbo) {
+  var cols = ["", ""];
+  lista.forEach(function (g) {
+    cols[g.col] += '<section class="fx-group"><h3>' + esc(g.nombre) + '</h3><p>' + esc(g.texto) + '</p><ol class="fx-list">' +
+      g.items.map(function (it) { return itemFx(it, verbo); }).join("") + '</ol></section>';
+  });
+  $(destino).innerHTML = "<div>" + cols[0] + "</div><div>" + cols[1] + "</div>";
+}
+
+function pintarArchivo() {
+  var mitad = Math.ceil(ARCHIVO.length / 2);
+  $("#archivo-lista").innerHTML = [ARCHIVO.slice(0, mitad), ARCHIVO.slice(mitad)].map(function (parte, i) {
+    return '<div><ol class="fx-list fx-list--ancho"' + (i ? ' start="' + (mitad + 1) + '"' : "") + '>' + parte.map(function (it) { return itemFx(it); }).join("") + '</ol></div>';
+  }).join("");
+}
+
+function pintarGente(destino, pareja) {
+  $(destino).innerHTML = pareja.map(function (g) {
     return '<div><section class="fx-group"><h3>' + esc(g.nombre) + '</h3><p>' + esc(g.texto) + '</p><ol class="fx-list">' +
       g.gente.map(function (x) {
         var k = reg(x[3], x[0] + ": " + x[4], x[5]);
         return '<li class="gente"><p class="gente__name">' + esc(x[0]) + ' <span>(' + esc(x[1]) + ')</span></p><p class="fx__note">' + esc(x[2]) + '</p>' +
           '<div class="listen"><button type="button" class="play play--sm" data-v="' + k + '"><span class="play__ic">' + PLAY + '</span><span><b>' + esc(x[4]) + '</b>' + (x[5] ? " · " + esc(x[5]) : "") + '</span></button>' +
           '<a class="out" href="' + yt(x[3]) + '" target="_blank" rel="noopener">YouTube ↗</a>' +
-          '<a class="out" href="' + ytBuscar(x[0] + " " + g.busca) + '" target="_blank" rel="noopener">Más vídeos ↗</a></div></li>';
+          '<a class="out" href="' + ytBuscar((x[0] + " " + g.busca).replace(/\s+$/, "")) + '" target="_blank" rel="noopener">Más vídeos ↗</a></div></li>';
       }).join("") + '</ol></section></div>';
   }).join("");
 }
@@ -1167,7 +1365,7 @@ function pintarRecursos() {
 }
 
 function pintarNav() {
-  var nPalos = 0, nMar = 0, nFus = 0, nRec = 0;
+  var nPalos = 0, nMar = 0, nFus = 0, nRec = 0, nCine = 0;
   ERAS.forEach(function (e) {
     var n = 0;
     e.palos.forEach(function (p) { n += p.sub ? p.sub.length : 1; });
@@ -1175,13 +1373,18 @@ function pintarNav() {
   });
   FUSIONES.forEach(function (g) { nFus += g.items.length; });
   RECURSOS.forEach(function (g) { nRec += g.items.length; });
+  CINE.forEach(function (g) { nCine += g.items.length; });
   $("#hero-nav").innerHTML =
-    '<a href="#documentales"><b>' + DOCUMENTALES.length + '</b> documentales</a>' +
+    '<a href="#documentales"><b>' + (DOCUMENTALES.length + CONCIERTOS.length) + '</b> documentales y conciertos</a>' +
     '<a href="#cronologia"><b>' + nPalos + '</b> palos en la cronología</a>' +
     '<a href="#ida-y-vuelta"><b>' + nMar + '</b> cantes de ida y vuelta</a>' +
+    '<a href="#sevillanas"><b>+</b> las sevillanas</a>' +
     '<a href="#fusiones"><b>' + nFus + '</b> fusiones</a>' +
     '<a href="#toque-y-baile"><b>' + (TOQUE.gente.length + BAILE.gente.length) + '</b> guitarristas y bailaores</a>' +
-    '<a href="#documentacion"><b>' + nRec + '</b> enlaces para saber más</a>';
+    '<a href="#herederos"><b>' + (PROMESAS.gente.length + GRUPOS.gente.length) + '</b> promesas y grupos de hoy</a>' +
+    '<a href="#cine"><b>' + nCine + '</b> escenas de cine</a>' +
+    '<a href="#documentacion"><b>' + nRec + '</b> enlaces para saber más</a>' +
+    '<a href="#archivo"><b>' + ARCHIVO.length + '</b> grabaciones de hace más de un siglo</a>';
   $("#eras-nav").innerHTML = ERAS.map(function (e) {
     return '<a href="#' + e.id + '"' + (e.mar ? ' class="sea"' : "") + '><b>' + esc(e.nombre) + '</b> ' + esc(e.anos) + '</a>';
   }).join("");
@@ -1204,19 +1407,33 @@ function ajustarTitulo() {
   var base = parseFloat(getComputedStyle(caja).fontSize), ancho = palabra.getBoundingClientRect().width;
   if (ancho > 0) caja.style.fontSize = Math.min(330, Math.floor(base * caja.clientWidth / ancho * 0.995)) + "px";
 }
+function ajustarEras() {
+  Array.prototype.forEach.call(document.querySelectorAll(".era__name"), function (el) {
+    el.style.fontSize = "";
+    var n = 0;
+    while (el.scrollWidth > el.clientWidth + 1 && n++ < 40) el.style.fontSize = (parseFloat(getComputedStyle(el).fontSize) * 0.96) + "px";
+  });
+}
+function ajustar() { ajustarTitulo(); ajustarEras(); }
 ajustarTitulo();
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarTitulo);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustar);
+window.addEventListener("load", ajustar);
 var espera = 0;
-window.addEventListener("resize", function () { cancelAnimationFrame(espera); espera = requestAnimationFrame(ajustarTitulo); });
+window.addEventListener("resize", function () { cancelAnimationFrame(espera); espera = requestAnimationFrame(ajustar); });
 
 pintarDocs();
 $("#eras").innerHTML = ERAS.map(pintarEra).join("");
-pintarFusiones();
-pintarGente();
+$("#sevi").innerHTML = '<article class="palo palo--suelto">' + cuerpo(SEVILLANAS) + '</article>';
+pintarFx(FUSIONES, "#fx");
+pintarGente("#gente", [TOQUE, BAILE]);
+pintarGente("#herederos-lista", [PROMESAS, GRUPOS]);
+pintarFx(CINE, "#cine-lista", "Ver la escena");
+pintarArchivo();
 pintarRecursos();
 pintarNav();
 $("#leyenda").innerHTML = '<span>' + estrella(true) + 'Mis recomendaciones</span><span>' + estrella(false) + 'El resto de las figuras de referencia</span>';
 avisoIncrustar();
+ajustarEras();
 
 /* ═══════════════════════ Los palos van apareciendo ═══════════════════════ */
 
