@@ -244,6 +244,59 @@ button{font:inherit;color:inherit}
 .play--sm{padding:6px 14px 6px 7px;font-size:14px}
 .play--sm .play__ic{width:24px;height:24px}
 .play--sm .play__ic svg{width:9px;height:9px}
+.arbol__nota{max-width:76ch;color:var(--muted);font-size:16px}
+.claves{display:flex;flex-wrap:wrap;gap:8px 24px;margin:14px 0 4px;font-size:14px;color:var(--muted)}
+.clave{display:inline-flex;align-items:center;gap:9px}
+.clave i{flex:none;display:inline-block;width:30px;border-top:2px solid var(--ink)}
+.clave i.p{border-top-style:dashed}
+.clave i.m{width:14px;height:14px;border:0;border-radius:3px;background:var(--sea-mark)}
+.rama{padding:24px 0 20px;border-bottom:1.5px solid var(--line)}
+.rama:last-child{border-bottom:0}
+.rama h3{font:italic 800 clamp(26px,3vw,34px)/1.05 var(--f-name);margin-bottom:12px}
+.arbol,.arbol ul{list-style:none;margin:0;padding:0}
+.arbol{--w:clamp(136px,14vw,176px);--g:clamp(28px,3.2vw,44px)}
+.arbol li{position:relative;padding:5px 0}
+.nodo{display:block;box-sizing:border-box;padding:8px 10px 9px;border:1.5px solid var(--ink);border-radius:6px;background:var(--page);color:var(--ink);text-decoration:none}
+.nodo b{display:block;font:italic 800 18px/1.1 var(--f-name)}
+.nodo small{display:block;margin-top:4px;font:600 11px/1.2 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.nodo span{display:block;margin-top:4px;font-size:12.5px;line-height:1.3;color:var(--muted)}
+a.nodo:hover,a.nodo:focus-visible{background:var(--ink);color:var(--page)}
+a.nodo:hover small,a.nodo:hover span,a.nodo:focus-visible small,a.nodo:focus-visible span{color:inherit}
+.nodo--raiz{background:var(--ink);border-color:var(--ink);color:var(--page)}
+.nodo--raiz b{font:400 19px/1.05 var(--f-display);text-transform:uppercase;letter-spacing:.01em}
+.nodo--raiz small,.nodo--raiz span{color:inherit;opacity:.82}
+a.nodo--raiz:hover,a.nodo--raiz:focus-visible{background:var(--accent);border-color:var(--accent);color:var(--page)}
+.rama--mar .nodo--raiz{background:var(--sea);border-color:var(--sea);color:var(--sea-ink)}
+.rama--mar .nodo:not(.nodo--raiz){border-color:var(--sea-mark);border-width:2px}
+.nodo--fuera{border-style:dashed}
+@media (min-width:1000px){
+  .arbol li{display:flex;align-items:center}
+  .arbol .nodo{flex:0 0 var(--w);width:var(--w)}
+  .arbol li>ul{position:relative;margin-left:var(--g)}
+  .arbol li>ul::before{content:"";position:absolute;left:calc(var(--g) * -1);top:50%;width:calc(var(--g) / 2);border-top:2px solid var(--ink)}
+  .arbol li>ul>li::before{content:"";position:absolute;left:calc(var(--g) / -2);top:50%;width:calc(var(--g) / 2);border-top:2px solid var(--ink)}
+  .arbol li>ul>li::after{content:"";position:absolute;left:calc(var(--g) / -2);top:0;bottom:0;border-left:2px solid var(--ink)}
+  .arbol li>ul>li:first-child::after{top:50%}
+  .arbol li>ul>li:last-child::after{bottom:50%}
+  .arbol li>ul>li:only-child::after{display:none}
+  .arbol li>ul>li.debil::before{border-top-style:dashed}
+}
+@media (max-width:999px){
+  .arbol{--m:16px;--i:22px}
+  .arbol .nodo{max-width:360px}
+  .nodo b{display:inline}
+  .nodo small{display:inline;margin-left:8px}
+  .arbol li>ul{margin:5px 0 0 var(--m);padding-left:var(--i)}
+  .arbol li>ul>li::before{content:"";position:absolute;left:calc(var(--i) * -1);top:26px;width:calc(var(--i) - 4px);border-top:2px solid var(--ink)}
+  .arbol li>ul>li::after{content:"";position:absolute;left:calc(var(--i) * -1);top:0;bottom:0;border-left:2px solid var(--ink)}
+  .arbol li>ul>li:first-child::after{top:-5px}
+  .arbol li>ul>li:last-child::after{bottom:auto;height:27px}
+  .arbol li>ul>li:first-child:last-child::after{height:32px}
+  .arbol li>ul>li.debil::before{border-top-style:dashed}
+}
+@media (max-width:420px){
+  .arbol{--m:6px;--i:16px}
+}
 .archivo__intro{max-width:76ch;color:var(--muted);font-size:16px;margin-bottom:12px}
 .fx-list--ancho .fx{grid-template-columns:88px minmax(0,1fr)}
 .fx-list--ancho .fx__year{font-size:21px;line-height:1.25}
@@ -317,6 +370,18 @@ button{font:inherit;color:inherit}
       <ul class="docs" id="docs"></ul>
       <h3 class="docs__sub">Conciertos y curiosidades</h3>
       <ul class="docs" id="conciertos"></ul>
+    </div>
+  </section>
+
+  <section class="section" id="arbol">
+    <div class="wrap">
+      <header class="section__head">
+        <h2>El árbol</h2>
+        <p>Quién viene de quién: cada palo cuelga del cante o del baile del que deriva. Pulsa cualquiera para saltar a su ficha en la cronología.</p>
+      </header>
+      <p class="arbol__nota">Las genealogías del flamenco se discuten desde hace más de un siglo. Este árbol sigue la versión más aceptada, la misma que cuenta cada ficha, y señala los parentescos dudosos.</p>
+      <p class="claves"><span class="clave"><i></i>Deriva de él</span><span class="clave"><i class="p"></i>Llega de fuera del flamenco y adopta su compás, o el parentesco se discute</span><span class="clave"><i class="m"></i>Vino de América</span></p>
+      <div id="arbol-ramas"></div>
     </div>
   </section>
 
@@ -1009,6 +1074,43 @@ var ERAS = [
 ];
 
 /* No es un palo flamenco: va aparte, con la misma forma que un palo. */
+var ARBOL = [
+  { titulo: "A palo seco", raiz: { r: "Romancero", f: "s. XV–XVIII", n: "los viejos romances castellanos", hijos: [
+    { p: "Romance", n: "los corridos, guardados de memoria en familias gitanas", hijos: [
+      { p: "Toná y debla", n: "coplas sueltas, sin guitarra: el tronco del cante jondo", hijos: [
+        { p: "Martinete", n: "la toná de los herreros" },
+        { p: "Seguiriya", n: "por la vía de las playeras, cantos de duelo", hijos: [
+          { p: "Saeta flamenca", n: "la saeta de penitencia, cantada por seguiriyas y por martinetes", debil: 1 } ] } ] } ] } ] } },
+  { titulo: "La soleá y su compás", raiz: { r: "Cantes para bailar", f: "primera mitad del XIX", n: "Triana", hijos: [
+    { p: "Soleá", n: "la madre del cante", hijos: [
+      { p: "Caña y polo", n: "más antiguos que ella; comparten su compás", debil: 1 },
+      { p: "Alegrías y cantiñas", n: "la soleá en modo mayor y a ritmo de fiesta" },
+      { p: "Bulerías", n: "nace como su remate rápido" },
+      { p: "Bambera", n: "coplas de columpio; lleva su compás desde 1970", debil: 1 } ] } ] } },
+  { titulo: "El fandango", raiz: { r: "Fandango", f: "s. XVIII", n: "baile popular de toda Andalucía", h: "#palo-fandango", hijos: [
+    { p: "Verdiales", n: "el más antiguo, el de las pandas de Málaga", hijos: [
+      { p: "Malagueña", n: "pierde el compás de baile y se vuelve cante libre" } ] },
+    { p: "Fandangos de Huelva", n: "ternario y de fiesta", hijos: [
+      { p: "Fandango natural", n: "se suelta del compás de Huelva: cada cantaor crea el suyo" } ] },
+    { p: "Granaína", n: "el fandango de Granada, recreado por Chacón" },
+    { p: "Taranta y taranto", n: "los fandangos de Almería bajan a la mina", hijos: [
+      { p: "Minera y cartagenera", n: "los cantes de La Unión y Cartagena" } ] },
+    { p: "Canastera", n: "un fandango a compás, creado en 1972" } ] } },
+  { titulo: "Los tangos", raiz: { r: "Bailes de tango", f: "mediados del XIX", n: "Cádiz y Triana; su origen se discute", hijos: [
+    { p: "Tangos y tientos", n: "el gran palo binario; los tientos son su versión lenta", hijos: [
+      { p: "Garrotín y farruca", n: "folclores del norte, metidos en su compás", debil: 1 },
+      { p: "Zambra", n: "canción teatral de los cuarenta, binaria y lenta", debil: 1 } ] } ] } },
+  { titulo: "Ida y vuelta", mar: 1, raiz: { r: "América", f: "c. 1850–1930", n: "Cuba, México y el Río de la Plata", hijos: [
+    { p: "Guajira", n: "del punto guajiro de los campesinos cubanos" },
+    { p: "Rumba", n: "de la guaracha de La Habana; entra mezclada con los tangos" },
+    { p: "Milonga", n: "el canto de los payadores del Río de la Plata" },
+    { p: "Vidalita", n: "canción argentina y uruguaya, pariente de la milonga" },
+    { p: "Colombiana", n: "inventada en España: de Colombia solo tiene el nombre", debil: 1 },
+    { p: "Petenera", n: "canción de moda del XIX; su parentesco con la mexicana se discute", debil: 1 } ] } },
+  { titulo: "Y aparte", raiz: { r: "Seguidillas", n: "copla y baile popular desde el Siglo de Oro", hijos: [
+    { p: "Sevillanas", h: "#sevillanas", n: "no son flamenco, pero conviven con él", fuera: 1 } ] } }
+];
+
 var SEVILLANAS = { nombre: "Sevillanas", lugar: "Sevilla y toda Andalucía",
   compas: ["ter", null, "Ternario (3/4), con el primer tiempo fuerte"],
   texto: "No son un palo flamenco, sino un baile popular: las antiguas seguidillas sevillanas, hijas de la seguidilla castellana, que en Andalucía fueron tomando aire flamenco. Se cantan siempre en series de cuatro, cada una con su coreografía fija de pasadas y careos, y se bailan en pareja en la Feria de Abril, que se celebra desde 1847, en la romería del Rocío y en cualquier fiesta andaluza.",
@@ -1297,11 +1399,33 @@ function cuerpo(p) {
   return '<p class="palo__place">' + esc(p.lugar) + '</p>' + compas(p.compas) + '<p class="palo__text">' + esc(p.texto) + '</p>' + mas + aviso + referencias(p) + extras(p);
 }
 
+function slug(t) {
+  return "palo-" + String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function pintarArbol() {
+  var fechas = {};
+  ERAS.forEach(function (e) {
+    e.palos.forEach(function (p) { fechas[p.nombre] = p.fecha; (p.sub || []).forEach(function (x) { fechas[x.nombre] = x.fecha || ""; }); });
+  });
+  function nodo(n) {
+    var fecha = n.f || fechas[n.p] || "";
+    var dentro = '<b>' + esc(n.p || n.r) + '</b>' + (fecha ? '<small>' + esc(fecha) + '</small>' : "") + (n.n ? '<span>' + esc(n.n) + '</span>' : "");
+    var cls = "nodo" + (n.r ? " nodo--raiz" : "") + (n.fuera ? " nodo--fuera" : "");
+    var href = n.h || (n.p ? "#" + slug(n.p) : "");
+    var caja = href ? '<a class="' + cls + '" href="' + href + '">' + dentro + '</a>' : '<div class="' + cls + '">' + dentro + '</div>';
+    return '<li' + (n.debil ? ' class="debil"' : "") + '>' + caja + (n.hijos ? '<ul>' + n.hijos.map(nodo).join("") + '</ul>' : "") + '</li>';
+  }
+  $("#arbol-ramas").innerHTML = ARBOL.map(function (r) {
+    return '<section class="rama' + (r.mar ? " rama--mar" : "") + '"><h3>' + esc(r.titulo) + '</h3><ul class="arbol">' + nodo(r.raiz) + '</ul></section>';
+  }).join("");
+}
+
 function pintarPalo(p) {
   var sub = !p.sub ? "" : '<div class="subpalos">' + p.sub.map(function (x) {
-    return '<section class="subpalo"><h5 class="subpalo__name">' + esc(x.nombre) + '</h5>' + cuerpo(x) + '</section>';
+    return '<section class="subpalo" id="' + slug(x.nombre) + '"><h5 class="subpalo__name">' + esc(x.nombre) + '</h5>' + cuerpo(x) + '</section>';
   }).join("") + '</div>';
-  return '<li class="tl-item"><p class="tl-date">' + esc(p.fecha) + '</p><span class="tl-node" aria-hidden="true"></span>' +
+  return '<li class="tl-item" id="' + slug(p.nombre) + '"><p class="tl-date">' + esc(p.fecha) + '</p><span class="tl-node" aria-hidden="true"></span>' +
     '<article class="palo"><h4 class="palo__name">' + esc(p.nombre) + '</h4>' + cuerpo(p) + sub + '</article></li>';
 }
 
@@ -1384,6 +1508,7 @@ function pintarNav() {
   CINE.forEach(function (g) { nCine += g.items.length; });
   $("#hero-nav").innerHTML =
     '<a href="#documentales"><b>' + (DOCUMENTALES.length + CONCIERTOS.length) + '</b> documentales y conciertos</a>' +
+    '<a href="#arbol"><b>' + ARBOL.length + '</b> ramas en el árbol de los palos</a>' +
     '<a href="#cronologia"><b>' + nPalos + '</b> palos en la cronología</a>' +
     '<a href="#ida-y-vuelta"><b>' + nMar + '</b> cantes de ida y vuelta</a>' +
     '<a href="#sevillanas"><b>+</b> las sevillanas</a>' +
@@ -1431,6 +1556,7 @@ window.addEventListener("resize", function () { cancelAnimationFrame(espera); es
 
 pintarDocs();
 $("#eras").innerHTML = ERAS.map(pintarEra).join("");
+pintarArbol();
 $("#sevi").innerHTML = '<article class="palo palo--suelto">' + cuerpo(SEVILLANAS) + '</article>';
 pintarFx(FUSIONES, "#fx");
 pintarGente("#gente", [TOQUE, BAILE]);
